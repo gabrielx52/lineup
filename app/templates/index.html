@@ -14,72 +14,149 @@
     </head>
     <body>
 
+        <!-- Header -->
+        <nav class="navbar navbar-light">
+          <span class="navbar-brand mb-0 text-white h1">Lineup</span>
+        </nav>
+        <div id='postnav1'></div>
+        <div id='postnav2'></div>
 
         <section class='container'>
           <div class="row">
-            <div class="col-lg-6 portfolio-item">
+
+        <!-- Left Team -->
+            <div class="col-lg-6 portfolio-item team-card">
               <div class="card h-100">
 
+                <div class="card-header">
+<!--                     <label for='nets-roster-btn'>Brooklyn Nets</label> -->
 
 
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Select Team
-                  </button>
-                  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-                    {% for team in teams %}
-                        <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
-                    {% endfor %}
-                  </div>
+                    <!-- <div class="stats-team-summary__logo"> -->
+                        <img team-logo="" abbr="BKN" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
+                        <button id='nets-roster-btn' type="button" class="btn btn-dark">Set Roster</button>
+                    <!-- </div> -->
+
+<!--                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                      <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Team
+                        </button>
+                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                        {% for team in teams %}
+                            <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
+                        {% endfor %}
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-secondary" id='set-roster-1' disabled>Set Roster</button>
+                    </div> -->
+
                 </div>
-
-
-
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                
                 <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">Project One</a>
-                  </h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+
+                  <!-- Team Row -->
+                  <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/2863.png" alt=""> -->
+                      <h4>John Smith</h4>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
 
 
 
-
-            <div class="col-lg-6 portfolio-item">
+            <!-- Right Team -->
+            <div class="col-lg-6 portfolio-item team-card">
               <div class="card h-100">
 
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="card-header">
+                    <img id="team2-img" team-logo="" abbr="" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="" alt="" title="" style="visibility: hidden;">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                      <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Team
+                        </button>
+                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                        {% for team in teams %}
+                            {% if team != 'BKN' %}
+                            <a class="dropdown-item" href="#" data-team-abbr="{{ team }}" data-team-id="{{ teams[team].id }}">{{ teams[team].city }} {{ teams[team].name }}</a>
+                            {% endif %}
 
-                  <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Select Team
-                    </button>
-                  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-                    {% for team in teams %}
-                        <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
-                    {% endfor %}
-                  </div>
-                  </div>
-
-                  <button type="button" class="btn btn-secondary">Set Roster</button>
-
+                        {% endfor %}
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-dark" id='set-roster-r' disabled>Set Roster</button>
+                    </div>
                 </div>
 
 
-
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">Project Two</a>
-                  </h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.</p>
+
+                  <!-- Team Row -->
+                  <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+                      <h4>John Smith</h4>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>      
         </section>
+
+
+    <!-- Footer, needs CSS -->
+    <!-- <div id='prefooter'></div> -->
+    <div id='prefooter1'></div>
+    <div id='prefooter2'></div>
+    <footer class='py-5'>
+      <div class='container'>
+        <div>
+            <p class="m-0 text-center text-white">&copy; 2018 Gabriel Now</p>
+        </div>
+      </div>
+    </footer>
 
 
     </body>

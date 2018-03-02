@@ -1,5 +1,68 @@
+
+section {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/*Team Card*/
+.team-card {
+    
+}
+.card-header {
+    height: 100px;
+}
 .scrollable-menu {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
 }
+
+.team-logo {
+    width: 80px;
+    height: 80px;
+}
+
+.rounded-circle {
+    background-color: #f6f6f6;
+}
+
+/*Navbar*/
+.navbar {
+    background-color: #000000;
+}
+
+#postnav1{
+    background-color: #FFFFFF;
+    height: 0.15rem;    
+}
+
+#postnav2{
+    background-color: #000000;
+    height: 0.25rem;    
+}
+/*End Navbar*/
+
+
+/*Footer*/
+#prefooter {
+    background-color: #FFFFFF;
+    height: 0.35rem;
+}
+
+#prefooter1 {
+    background-color: #000000;
+    height: 0.5rem;
+}
+
+#prefooter2 {
+    /*background-color: #474747;*/
+    background-color: #FFFFFF;
+    height: 0.35rem;
+}
+
+footer {
+    background-color: #000000;
+    height: 8rem;
+}
+/*End Footer*/
+
