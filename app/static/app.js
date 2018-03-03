@@ -12,14 +12,12 @@ $(document).ready(function() {
         $("#team2-img").attr({
             "style": "visibility: visible",
             "src": `./../static/logos/${teamAbbr}_logo.svg`
-        })
+        });
 
-        $("#set-roster-r").removeAttr("disabled")
-
-        // $(".collapse").collapse()
-
+        $("#set-roster-r").removeAttr("disabled");
+        $("#nets-roster-btn").removeAttr("disabled");
         $("#left-stats-table-header").text(
-            `2017-18 stats vs. ${teamName}`)
+            `2017-18 stats vs. ${teamName}`);
 
         $.ajax({
             type: "POST",
@@ -130,10 +128,6 @@ $(document).ready(function() {
                     `${oppsStats['BLKA'].toFixed(1)}`)
                 $("#right-tab-pf").text(
                     `${oppsStats['PF'].toFixed(1)}`)
-
-
-
-                console.log(netsStats);
             },
             error: function(error) {
                 console.log(error);

@@ -16,6 +16,7 @@ section {
 #stats-tab {
     padding: 0.5;
     border: none;
+    overflow-x: scroll;
 }
 
 .table td, .table th {
@@ -39,6 +40,11 @@ section {
 
 .rounded-circle {
     background-color: #f6f6f6;
+}
+
+#btnGroupDrop1 {
+    background-color: #ff7c0e;
+    border-color: #ff7c0e;
 }
 
 /*Navbar*/
@@ -81,3 +87,17 @@ footer {
 }
 /*End Footer*/
 
+@media (max-width: 1000px) {
+    #player_spacer {
+    display: none;
+  }
+}
+
+/*@media (min-width: 992px) {
+  .col-lg-2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+}*/
