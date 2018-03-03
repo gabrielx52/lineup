@@ -1,7 +1,7 @@
 """Script using nba_py API wrapper."""
 from nba_py import player, team
 
-from team_dict import TEAMS, tvt_keys
+from .team_dict import TEAMS, tvt_keys
 
 
 def get_player_info(player_id):

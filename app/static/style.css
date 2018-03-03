@@ -6,11 +6,26 @@ section {
 
 /*Team Card*/
 .team-card {
-    
+
 }
+
+.table {
+    font-size: 0.5em;
+}
+
+#stats-tab {
+    padding: 0.5;
+    border: none;
+}
+
+.table td, .table th {
+    padding: 0.5rem;
+}
+
 .card-header {
     height: 100px;
 }
+
 .scrollable-menu {
     height: auto;
     max-height: 200px;

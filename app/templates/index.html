@@ -24,34 +24,84 @@
         <section class='container'>
           <div class="row">
 
+
+
+
         <!-- Left Team -->
             <div class="col-lg-6 portfolio-item team-card">
               <div class="card h-100">
-
                 <div class="card-header">
-<!--                     <label for='nets-roster-btn'>Brooklyn Nets</label> -->
-
-
-                    <!-- <div class="stats-team-summary__logo"> -->
-                        <img team-logo="" abbr="BKN" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
-                        <button id='nets-roster-btn' type="button" class="btn btn-dark">Set Lineup</button>
-                    <!-- </div> -->
-
-<!--                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                      <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Select Team
-                        </button>
-                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-                        {% for team in teams %}
-                            <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
-                        {% endfor %}
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-secondary" id='set-roster-1' disabled>Set Roster</button>
-                    </div> -->
-
+                    <img data-team-id="1610612751" team-logo="" abbr="BKN" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
+                    <button id='nets-roster-btn' type="button" class="btn btn-dark">Set Lineup</button>
                 </div>
+
+                <!-- Collapsable Stats Table -->
+                <div class="collapse" id="collapseExample">
+                    <div id="stats-tab" class="card card-body">
+                        <div class="container">
+                            <span id="left-stats-table-header"></span>
+                            <table id="nets-table" class="table">
+                                <tr>
+                                    <th>GP</th>
+                                    <th>W</th>
+                                    <th>L</th>
+                                    <th>WIN%</th>
+                                    <th>MIN</th>
+                                    <th>PTS</th>
+                                    <th>FGM</th>
+                                    <th>FGA</th>
+                                    <th>FG%</th>
+                                    <th>3PM</th>
+                                    <th>3PA</th>
+                                    <th>3P%</th>
+                                </tr>
+                                <tr>
+                                    <td id="left-tab-gp"></td>
+                                    <td id="left-tab-w"></td>
+                                    <td id="left-tab-l"></td>
+                                    <td id="left-tab-winpct"></td>
+                                    <td id="left-tab-min"></td>
+                                    <td id="left-tab-pts"></td>
+                                    <td id="left-tab-fgm"></td>
+                                    <td id="left-tab-fga"></td>
+                                    <td id="left-tab-fgpct"></td>
+                                    <td id="left-tab-3pm"></td>
+                                    <td id="left-tab-3pa"></td>
+                                    <td id="left-tab-3ppct"></td>
+                                </tr>
+                                <tr>
+                                    <th>FTM</th>
+                                    <th>FTA</th>
+                                    <th>FT%</th>
+                                    <th>OREB</th>
+                                    <th>DREB</th>
+                                    <th>REB</th>
+                                    <th>AST</th>
+                                    <th>TOV</th>
+                                    <th>STL</th>
+                                    <th>BLK</th>
+                                    <th>BLKA</th>
+                                    <th>PF</th>
+                                </tr>
+                                <tr>
+                                    <td id="left-tab-ftm"></td>
+                                    <td id="left-tab-fta"></td>
+                                    <td id="left-tab-ftpct"></td>
+                                    <td id="left-tab-oreb"></td>
+                                    <td id="left-tab-dreb"></td>
+                                    <td id="left-tab-reb"></td>
+                                    <td id="left-tab-ast"></td>
+                                    <td id="left-tab-tov"></td>
+                                    <td id="left-tab-stl"></td>
+                                    <td id="left-tab-blk"></td>
+                                    <td id="left-tab-blka"></td>
+                                    <td id="left-tab-pf"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
                 
                 <div class="card-body">
 
@@ -113,6 +163,74 @@
                 </div>
 
 
+                <!-- Collapsable Stats Table -->
+                <div class="collapse" id="collapseExample">
+                    <div id="stats-tab" class="card card-body">
+                        <div class="container">
+                            <span id="right-stats-table-header">2017-18 stats vs. Brooklyn Nets</span>
+                            <table id="opponents-table" class="table">
+                                <tr>
+                                    <th>GP</th>
+                                    <th>W</th>
+                                    <th>L</th>
+                                    <th>WIN%</th>
+                                    <th>MIN</th>
+                                    <th>PTS</th>
+                                    <th>FGM</th>
+                                    <th>FGA</th>
+                                    <th>FG%</th>
+                                    <th>3PM</th>
+                                    <th>3PA</th>
+                                    <th>3P%</th>
+                                </tr>
+                                <tr>
+                                    <td id="right-tab-gp"></td>
+                                    <td id="right-tab-w"></td>
+                                    <td id="right-tab-l"></td>
+                                    <td id="right-tab-winpct"></td>
+                                    <td id="right-tab-min"></td>
+                                    <td id="right-tab-pts"></td>
+                                    <td id="right-tab-fgm"></td>
+                                    <td id="right-tab-fga"></td>
+                                    <td id="right-tab-fgpct"></td>
+                                    <td id="right-tab-3pm"></td>
+                                    <td id="right-tab-3pa"></td>
+                                    <td id="right-tab-3ppct"></td>
+                                </tr>
+                                <tr>
+                                    <th>FTM</th>
+                                    <th>FTA</th>
+                                    <th>FT%</th>
+                                    <th>OREB</th>
+                                    <th>DREB</th>
+                                    <th>REB</th>
+                                    <th>AST</th>
+                                    <th>TOV</th>
+                                    <th>STL</th>
+                                    <th>BLK</th>
+                                    <th>BLKA</th>
+                                    <th>PF</th>
+                                </tr>
+                                <tr>
+                                    <td id="right-tab-ftm"></td>
+                                    <td id="right-tab-fta"></td>
+                                    <td id="right-tab-ftpct"></td>
+                                    <td id="right-tab-oreb"></td>
+                                    <td id="right-tab-dreb"></td>
+                                    <td id="right-tab-reb"></td>
+                                    <td id="right-tab-ast"></td>
+                                    <td id="right-tab-tov"></td>
+                                    <td id="right-tab-stl"></td>
+                                    <td id="right-tab-blk"></td>
+                                    <td id="right-tab-blka"></td>
+                                    <td id="right-tab-pf"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="card-body">
 
                   <!-- Team Row -->
@@ -146,8 +264,7 @@
         </section>
 
 
-    <!-- Footer, needs CSS -->
-    <!-- <div id='prefooter'></div> -->
+    <!-- Footer -->
     <div id='prefooter1'></div>
     <div id='prefooter2'></div>
     <footer class='py-5'>
@@ -164,4 +281,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src='./../static/app.js'></script>
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
 </html>
+
+
+
+
+
+
+
+<!-- Left side drop down -->
+<!--                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                      <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Team
+                        </button>
+                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                        {% for team in teams %}
+                            <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
+                        {% endfor %}
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-secondary" id='set-roster-1' disabled>Set Roster</button>
+                    </div> -->
