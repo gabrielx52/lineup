@@ -16,6 +16,9 @@ section {
     padding: 0.25rem;
     overflow: hidden;
 }
+.yearbook-card {
+    border: none;
+}
 /*End Yearbook*/
 
 /*Team Card*/

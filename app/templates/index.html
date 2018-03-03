@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-header">
                     <img data-team-id="1610612751" team-logo="" abbr="BKN" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
-                    <button id='nets-roster-btn' type="button" class="btn btn-dark" disabled>Set Lineup</button>
+                    <button id='nets-roster-btn' type="button" class="btn btn-dark" disabled>Choose Lineup</button>
                 </div>
                 
                 <!-- Collapsable Lineup -->
@@ -159,9 +159,12 @@
             <div class="col-lg-6 portfolio-item team-card">
               <div class="card">
 
+
                 <div class="card-header">
+
                     <img id="team2-img" team-logo="" abbr="" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="" alt="" title="" style="visibility: hidden;">
-                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                    <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
                       <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Select Team
@@ -175,23 +178,24 @@
                         {% endfor %}
                         </div>
                       </div>
-                      <button type="button" class="btn btn-dark" id='set-roster-r' disabled>Set Lineup</button>
+                      <button type="button" class="btn btn-dark" id="set-roster-r" disabled>Choose Lineup</button>
                     </div>
+
                 </div>
 
 
                 <!-- Collapsable Lineup -->
                 <div class="collapse" id="right-lineup-collapse">
                     <div class="card card-body">
-                        <form action="">
+                        <form id="right-yearbook-form" action="">
                             <div class="row" id="right-lineup-yearbook">
 
 
                             </div>
                         </form>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button id='right-lineup-confirm' type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
-                            <button id='right-lineup-collapse-close' type="button" class="btn btn-outline-dark">Cancel</button>
+                            <button form="right-yearbook-form" id="right-lineup-confirm" type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
+                            <button id="right-lineup-collapse-close" type="button" class="btn btn-outline-dark">Cancel</button>
                         </div>
                     </div>
                 </div>

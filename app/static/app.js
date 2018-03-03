@@ -40,7 +40,7 @@ $(document).ready(function() {
                 let oppsStats = response['opp_stats']
                 let oppRoster = response['opp_roster']
                 
-                console.log(oppsStats)
+                // console.log(oppsStats)
 
                 localStorage.setItem("nets_stats", JSON.stringify(netsStats));
                 localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
