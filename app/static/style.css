@@ -4,6 +4,20 @@ section {
     margin-bottom: 1rem;
 }
 
+
+/*Yearbook*/
+#left-lineup-yearbook, #right-lineup-yearbook {
+    max-height: 32%;
+    overflow-y: scroll;
+}
+.yearbook-footer {
+    font-size: 0.8em;
+    height: 3rem;
+    padding: 0.25rem;
+    overflow: hidden;
+}
+/*End Yearbook*/
+
 /*Team Card*/
 .team-card {
 
@@ -43,8 +57,13 @@ section {
 }
 
 #btnGroupDrop1 {
-    background-color: #ff7c0e;
-    border-color: #ff7c0e;
+    background-color: #f82c1d;
+    border-color: #f82c1d;
+}
+
+#nets-roster-btn, #set-roster-r, #left-lineup-confirm, #right-lineup-confirm {
+   color: transparent;
+   text-shadow: 0 0 5px rgba(197, 193, 193, 0.5);
 }
 
 /*Navbar*/

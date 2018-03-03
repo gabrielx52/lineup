@@ -29,14 +29,32 @@
 
         <!-- Left Team -->
             <div class="col-lg-6 portfolio-item team-card">
-              <div class="card h-100">
+              <div class="card">
                 <div class="card-header">
                     <img data-team-id="1610612751" team-logo="" abbr="BKN" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
                     <button id='nets-roster-btn' type="button" class="btn btn-dark" disabled>Set Lineup</button>
                 </div>
+                
+                <!-- Collapsable Lineup -->
+                <div class="collapse" id="left-lineup-collapse">
+                    <div class="card card-body">
+                        <form action="">
+                            <div class="row" id="left-lineup-yearbook">
+
+
+                        
+                            </div>
+                        </form>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button id='left-lineup-confirm' type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
+                            <button id='left-lineup-collapse-close' type="button" class="btn btn-outline-dark">Cancel</button>
+                        </div>
+                        <!-- <button id='left-lineup-collapse-close' type="button" class="btn btn-dark">Confirm Lineup</button> -->
+                    </div>
+                </div>
 
                 <!-- Collapsable Stats Table -->
-                <div class="collapse" id="collapseExample">
+                <div class="collapse collapse-stats" id="collapseExample">
                     <div id="stats-tab" class="card card-body">
                         <div class="container">
                             <span id="left-stats-table-header"></span>
@@ -109,28 +127,23 @@
                   <div class="row">
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-2" id="player_spacer"></div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/2863.png" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
@@ -144,7 +157,7 @@
 
             <!-- Right Team -->
             <div class="col-lg-6 portfolio-item team-card">
-              <div class="card h-100">
+              <div class="card">
 
                 <div class="card-header">
                     <img id="team2-img" team-logo="" abbr="" season="2017-18" class="team-logo away team-img" type="image/svg+xml" src="" alt="" title="" style="visibility: hidden;">
@@ -167,8 +180,25 @@
                 </div>
 
 
+                <!-- Collapsable Lineup -->
+                <div class="collapse" id="right-lineup-collapse">
+                    <div class="card card-body">
+                        <form action="">
+                            <div class="row" id="right-lineup-yearbook">
+
+
+                            </div>
+                        </form>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button id='right-lineup-confirm' type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
+                            <button id='right-lineup-collapse-close' type="button" class="btn btn-outline-dark">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- Collapsable Stats Table -->
-                <div class="collapse" id="collapseExample">
+                <div class="collapse collapse-stats" id="collapseExample">
                     <div id="stats-tab" class="card card-body">
                         <div class="container">
                             <span id="right-stats-table-header">2017-18 stats vs. Brooklyn Nets</span>
@@ -241,27 +271,22 @@
                   <div class="row">
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-2" id="player_spacer"></div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <h4 class="player_name"></h4>
                     </div>
                     <div class="col-lg-4 col-sm-6 text-center mb-4">
-                      <!-- <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt=""> -->
                       <img class="rounded-circle img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
                       <h4 class="player_name"></h4>
                     </div>
@@ -289,6 +314,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src='./../static/app.js'></script>
+    <script type="text/javascript" src='./../static/lineup.js'></script>
     <script type=text/javascript>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>

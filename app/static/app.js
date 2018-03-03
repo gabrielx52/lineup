@@ -1,8 +1,11 @@
-'use strict';
+"use strict";
 
 
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
+    $(".dropdown-toggle").click(function() {
+        $("#right-lineup-collapse").collapse("hide");
+    });
 
     $(".dropdown-item").click(function() {
         let teamAbbr = $(this).data("team-abbr")
@@ -14,10 +17,16 @@ $(document).ready(function() {
             "src": `./../static/logos/${teamAbbr}_logo.svg`
         });
 
-        $("#set-roster-r").removeAttr("disabled");
-        $("#nets-roster-btn").removeAttr("disabled");
+        $("#set-roster-r").removeAttr("disabled")
+                          .css({"color": "white"});
+
+        $("#nets-roster-btn").removeAttr("disabled")
+                             .css({"color": "white"});
+        
+
         $("#left-stats-table-header").text(
             `2017-18 stats vs. ${teamName}`);
+
 
         $.ajax({
             type: "POST",
@@ -25,11 +34,21 @@ $(document).ready(function() {
             dataType: 'json',
             data: {"teamId": JSON.stringify(teamId)},
             success: function(response) {
+                let netsStats = response['nets_stats']
+                let netsRoster = response['nets_roster']
 
-                $(".collapse").collapse()
+                let oppsStats = response['opp_stats']
+                let oppRoster = response['opp_roster']
                 
-                var netsStats = response['nets_stats']
-                var oppsStats = response['opp_stats']
+                console.log(oppsStats)
+
+                localStorage.setItem("nets_stats", JSON.stringify(netsStats));
+                localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
+                localStorage.setItem("nets_roster", JSON.stringify(netsRoster));
+                localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
+                
+                $(".collapse-stats").collapse()
+                
                 $("#left-tab-gp").text(
                     `${netsStats['GP']}`)
                 $("#left-tab-w").text(
