@@ -287,7 +287,7 @@ TEAMS = {
         'displayConference': 'Eastern',
         'division': 'Atlantic',
         'id': '1610612755',
-        'name': 'Sixers',
+        'name': '76ers',
         'color': 'EC003D',
         'colors': ['EC003D', '00559A', 'BAC4CA']
     }, 'PHX': {

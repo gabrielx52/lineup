@@ -9,6 +9,14 @@ section {
 
 
 /*Yearbook*/
+.stats-header {
+    padding: 0.4rem;
+}
+
+.stats-header > button {
+    padding: 0 0.2rem;
+    /*background-color: pink;*/
+}
 #left-lineup-yearbook, #right-lineup-yearbook {
     max-height: 32%;
     overflow-y: scroll;
@@ -23,6 +31,15 @@ section {
 }
 .yearbook-card {
     border: none;
+}
+
+.yearbook-card img {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0), 
+            rgba(20, 18, 18, 0.45)
+        ),
+        url("./dust_scratches.png");
 }
 /*End Yearbook*/
 
@@ -41,7 +58,7 @@ section {
     border-top: 2px solid;
     color: #f5f0f0;
     font-family: 'Anton', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     letter-spacing: 1px;
     padding: 0.3rem 0;
 }
