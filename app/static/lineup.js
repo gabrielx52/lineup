@@ -1,12 +1,15 @@
 "use strict";
 
 $(document).ready(function() {
-    $("#nets-roster-btn").click(function() {
+    $("#set-roster-l").click(function() {
         let netsRoster = JSON.parse(localStorage["nets_roster"])
         let str = ""
+
+        $("#left-lineup-confirm").attr("disabled", true)
+                                  .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
         
 
-        // Render right side yearbook when choose lineup is selected.
+        // Render left side yearbook when choose lineup is selected.
         $("#left-lineup-collapse").collapse("show");
         for(var playerObj in netsRoster) {
             var playerName = netsRoster[playerObj]["PLAYER"]
@@ -19,7 +22,7 @@ $(document).ready(function() {
                                 `<a href="#"><img class="card-img-top" src="./../static/headshots/${teamID}/${playerID}.png" alt=""></a>` +
                                 '<div class="card-footer yearbook-footer">' +
                                     '<div class="form-check">' +
-                                        `<input value="${playerID}" data-player-id="${playerID}" data-team-id="${teamID}" type="checkbox" class="form-check-input left-yearbook-input" id="exampleCheck1">` +
+                                        `<input value="${playerID}" data-player-id="${playerID}" data-team-id="${teamID}" data-player-name="${playerName}" type="checkbox" class="form-check-input left-yearbook-input" id="exampleCheck1">` +
                                         `<label class="form-check-label" for="exampleCheck1">${playerName}</label>` +
                                     '</div>' +
                                 '</div>' +
@@ -28,7 +31,94 @@ $(document).ready(function() {
         };
         $("#left-lineup-yearbook").html(str);
 
+
+
+
+
+
+        // Listening for checkboxes being checked/unchecked.
+        $("input.left-yearbook-input").on("change", function(event) {
+            // Enable checkboxes if less than five are checked.
+            if($("input.left-yearbook-input:checked").length != 5) {
+                $("input.left-yearbook-input:not(:checked)").attr("disabled", false);
+                $("#left-lineup-confirm").attr("disabled", true)
+                                          .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
+
+            };
+            if($("input.left-yearbook-input:checked").length == 5) {
+
+                // Enable confirm lineup button if five boxes checked.
+                $("#left-lineup-confirm").removeAttr("disabled")
+                                          .css({"color": "white"});
+                // Disable checkboxes if more than five are checked. 
+                $("input.left-yearbook-input:not(:checked)").attr("disabled", true);
+
+
+                let teamFive = $("input.left-yearbook-input:checked")
+                console.log(teamFive)
+                let teamLineup = {"teamID": teamFive[0].attributes["data-team-id"].value,
+                                 "players": {
+                                     "player1": {
+                                        "ID": teamFive[0].attributes["data-player-id"].value,
+                                        "NAME": teamFive[0].attributes["data-player-name"].value
+                                    },
+                                     "player2": {
+                                        "ID": teamFive[1].attributes["data-player-id"].value,
+                                        "NAME": teamFive[1].attributes["data-player-name"].value
+                                    },
+                                     "player3": {
+                                        "ID": teamFive[2].attributes["data-player-id"].value,
+                                        "NAME": teamFive[2].attributes["data-player-name"].value
+                                    },
+                                     "player4": {
+                                        "ID": teamFive[3].attributes["data-player-id"].value,
+                                        "NAME": teamFive[3].attributes["data-player-name"].value
+                                    },
+                                     "player5": {
+                                        "ID": teamFive[4].attributes["data-player-id"].value,
+                                        "NAME": teamFive[4].attributes["data-player-name"].value
+                                    }
+                                }
+                             }
+
+                localStorage.setItem("teamLineup", JSON.stringify(teamLineup));
+            }
+        })
+
+
     });
+
+
+
+
+
+
+
+
+
+
+
+    // Close left side lineup and confirm picks.
+    $("#left-lineup-confirm").click(function() {
+        let teamLineup = JSON.parse(localStorage["teamLineup"])
+        let players = teamLineup["players"]
+        let teamID = teamLineup["teamID"]
+        let str = '<div class="col-lg-2" id="player_spacer"></div>'
+
+        for(var playerObj in players) {
+            let playerName = players[playerObj]["NAME"]
+            var playerID = players[playerObj]["ID"]
+            playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
+            str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
+                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
+                            `<h4 class="player_name">${playerName}</h4>` +
+                        '</div>'
+        };
+        $("#left-team-dash").html(str);
+
+        $("#left-lineup-collapse").collapse("hide");
+    });
+
 
     // Close left side lineup dropdown with cancel button.
     $("#left-lineup-collapse-close").click(function(){

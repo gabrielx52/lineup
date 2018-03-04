@@ -11,18 +11,8 @@ $(document).ready(function() {
         let teamAbbr = $(this).data("team-abbr")
         let teamName = $(this).text()
         let teamId = $(this).data("team-id")
-
-        $("#team2-img").attr({
-            "style": "visibility: visible",
-            "src": `./../static/logos/${teamAbbr}_logo.svg`
-        });
-
-        $("#set-roster-r").removeAttr("disabled")
-                          .css({"color": "white"});
-
-        $("#nets-roster-btn").removeAttr("disabled")
-                             .css({"color": "white"});
-        
+        $("#team2-img").attr({"style": "visibility: hidden"});
+        $("#loader").addClass("loader");
 
         $("#left-stats-table-header").text(
             `2017-18 stats vs. ${teamName}`);
@@ -40,7 +30,12 @@ $(document).ready(function() {
                 let oppsStats = response['opp_stats']
                 let oppRoster = response['opp_roster']
                 
-                // console.log(oppsStats)
+                $("#loader").removeClass("loader");
+
+                $("#team2-img").attr({
+                    "style": "visibility: visible",
+                    "src": `./../static/logos/${teamAbbr}_logo.svg`
+                });
 
                 localStorage.setItem("nets_stats", JSON.stringify(netsStats));
                 localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
@@ -48,6 +43,10 @@ $(document).ready(function() {
                 localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
                 
                 $(".collapse-stats").collapse()
+                $("#set-roster-r").removeAttr("disabled")
+                                  .css({"color": "white"});
+                $("#set-roster-l").removeAttr("disabled")
+                                     .css({"color": "white"});
                 
                 $("#left-tab-gp").text(
                     `${netsStats['GP']}`)
