@@ -26,10 +26,10 @@ $(document).ready(function() {
             success: function(response) {
                 let netsStats = response['nets_stats']
                 let netsRoster = response['nets_roster']
-
                 let oppsStats = response['opp_stats']
                 let oppRoster = response['opp_roster']
-                
+                let teamColors = response['team_colors']
+                console.log(teamColors)
                 $("#loader").removeClass("loader");
 
                 $("#team2-img").attr({
@@ -41,6 +41,7 @@ $(document).ready(function() {
                 localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
                 localStorage.setItem("nets_roster", JSON.stringify(netsRoster));
                 localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
+                localStorage.setItem("team_colors", JSON.stringify(teamColors))
                 
                 $(".collapse-stats").collapse()
                 $("#set-roster-r").removeAttr("disabled")

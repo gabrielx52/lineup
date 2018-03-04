@@ -11,16 +11,18 @@ $(document).ready(function() {
 
         // Render left side yearbook when choose lineup is selected.
         $("#left-lineup-collapse").collapse("show");
+        var teamID = "1610612751"
+        var teamColors = JSON.parse(localStorage["team_colors"])[teamID]
+        console.log(teamColors)
         for(var playerObj in netsRoster) {
             var playerName = netsRoster[playerObj]["PLAYER"]
-            var teamID = "1610612751"
             var playerID = netsRoster[playerObj]["PLAYER_ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             // console.log(playerName)
             str = str + '<div class="col-lg-4 col-md-6 mb-4">' +
                             '<div class="card yearbook-card">' +
                                 `<a href="#"><img class="card-img-top" src="./../static/headshots/${teamID}/${playerID}.png" alt=""></a>` +
-                                '<div class="card-footer yearbook-footer">' +
+                                `<div class="card-footer yearbook-footer" style="background-color: #${teamColors[0]}; color: #${teamColors[1]};">` +
                                     '<div class="form-check">' +
                                         `<input value="${playerID}" data-player-id="${playerID}" data-team-id="${teamID}" data-player-name="${playerName}" type="checkbox" class="form-check-input left-yearbook-input" id="exampleCheck1">` +
                                         `<label class="form-check-label" for="exampleCheck1">${playerName}</label>` +
@@ -55,7 +57,6 @@ $(document).ready(function() {
 
 
                 let teamFive = $("input.left-yearbook-input:checked")
-                console.log(teamFive)
                 let teamLineup = {"teamID": teamFive[0].attributes["data-team-id"].value,
                                  "players": {
                                      "player1": {
@@ -103,6 +104,7 @@ $(document).ready(function() {
         let teamLineup = JSON.parse(localStorage["teamLineup"])
         let players = teamLineup["players"]
         let teamID = teamLineup["teamID"]
+        var teamColors = JSON.parse(localStorage["team_colors"])[teamID]
         let str = '<div class="col-lg-2" id="player_spacer"></div>'
 
         for(var playerObj in players) {
@@ -111,7 +113,7 @@ $(document).ready(function() {
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
                             `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
-                            `<h4 class="player_name">${playerName}</h4>` +
+                            `<h4 style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="player_name">${playerName}</h4>` +
                         '</div>'
         };
         $("#left-team-dash").html(str);
@@ -140,9 +142,9 @@ $(document).ready(function() {
         // Render right side yearbook when choose lineup is selected.
         $("#right-lineup-collapse").collapse("show");
         for(var playerObj in oppRoster) {
-            var playerName = oppRoster[playerObj]["PLAYER"]
-            var teamID = oppRoster[playerObj]["TeamID"]
-            var playerID = oppRoster[playerObj]["PLAYER_ID"]
+            let playerName = oppRoster[playerObj]["PLAYER"]
+            let teamID = oppRoster[playerObj]["TeamID"]
+            let playerID = oppRoster[playerObj]["PLAYER_ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             // console.log(playerName)
             str = str + '<div class="col-lg-4 col-md-6 mb-4">' +
@@ -214,15 +216,16 @@ $(document).ready(function() {
         let oppLineup = JSON.parse(localStorage["oppLineup"])
         let players = oppLineup["players"]
         let teamID = oppLineup["teamID"]
+        let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
         let str = '<div class="col-lg-2" id="player_spacer"></div>'
 
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
-            var playerID = players[playerObj]["ID"]
+            let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
                             `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
-                            `<h4 id="right-name-0" class="player_name">${playerName}</h4>` +
+                            `<h4 style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="player_name">${playerName}</h4>` +
                         '</div>'
         };
         $("#right-team-dash").html(str);
