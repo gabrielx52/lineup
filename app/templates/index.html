@@ -1,0 +1,331 @@
+<html>
+    <head>
+          <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href='./../static/style.css'>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+        <title>Main Page</title>
+    </head>
+    <body>
+
+        <!-- Header -->
+        <nav class="navbar navbar-light">
+          <span class="navbar-brand mb-0 text-white h1">Lineup</span>
+        </nav>
+        <div id='postnav1'></div>
+        <div id='postnav2'></div>
+
+        <section class='container'>
+            <div class="row">
+
+                <!-- Left Team -->
+                <div class="col-lg-6 portfolio-item team-card">
+                    <div class="card">
+
+                        <div class="card-header">
+                            <img data-team-id="1610612751" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
+                            <button type="button" class="btn btn-dark" id="set-roster-l" disabled>Choose Lineup</button>
+                        </div>
+
+                        <!-- Collapsable Lineup -->
+                        <div class="collapse" id="left-lineup-collapse">
+                            <div class="card card-body">
+                                <form action="">
+                                    <div class="row" id="left-lineup-yearbook">
+                                    </div>
+                                </form>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button id='left-lineup-confirm' type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
+                                    <button id='left-lineup-collapse-close' type="button" class="btn btn-outline-dark">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Collapsable Stats Table -->
+                        <div class="collapse collapse-stats" id="collapseExample">
+                            <div id="stats-tab" class="card card-body">
+                                <div class="container">
+                                    <span id="left-stats-table-header"></span>
+                                    <table id="nets-table" class="table">
+                                        <tr>
+                                            <th>GP</th>
+                                            <th>W</th>
+                                            <th>L</th>
+                                            <th>WIN%</th>
+                                            <th>MIN</th>
+                                            <th>PTS</th>
+                                            <th>FGM</th>
+                                            <th>FGA</th>
+                                            <th>FG%</th>
+                                            <th>3PM</th>
+                                            <th>3PA</th>
+                                            <th>3P%</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="left-tab-gp"></td>
+                                            <td id="left-tab-w"></td>
+                                            <td id="left-tab-l"></td>
+                                            <td id="left-tab-winpct"></td>
+                                            <td id="left-tab-min"></td>
+                                            <td id="left-tab-pts"></td>
+                                            <td id="left-tab-fgm"></td>
+                                            <td id="left-tab-fga"></td>
+                                            <td id="left-tab-fgpct"></td>
+                                            <td id="left-tab-3pm"></td>
+                                            <td id="left-tab-3pa"></td>
+                                            <td id="left-tab-3ppct"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>FTM</th>
+                                            <th>FTA</th>
+                                            <th>FT%</th>
+                                            <th>OREB</th>
+                                            <th>DREB</th>
+                                            <th>REB</th>
+                                            <th>AST</th>
+                                            <th>TOV</th>
+                                            <th>STL</th>
+                                            <th>BLK</th>
+                                            <th>BLKA</th>
+                                            <th>PF</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="left-tab-ftm"></td>
+                                            <td id="left-tab-fta"></td>
+                                            <td id="left-tab-ftpct"></td>
+                                            <td id="left-tab-oreb"></td>
+                                            <td id="left-tab-dreb"></td>
+                                            <td id="left-tab-reb"></td>
+                                            <td id="left-tab-ast"></td>
+                                            <td id="left-tab-tov"></td>
+                                            <td id="left-tab-stl"></td>
+                                            <td id="left-tab-blk"></td>
+                                            <td id="left-tab-blka"></td>
+                                            <td id="left-tab-pf"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>                
+                        <div class="card-body">
+                            <!-- Team Row -->
+                            <div class="row" id="left-team-dash">
+                                <div class="col-lg-2" id="player_spacer"></div>
+                                <div class="col-lg-8 col-sm-8 text-center mb-4">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Right Team -->
+                <div class="col-lg-6 portfolio-item team-card">
+                    <div class="card">
+                        <div class="card-header">
+                            <!-- <div class="loader"></div> -->
+                            <div id="loader"></div>
+                            <img id="team2-img" class="team-logo away team-img" type="image/svg+xml" src="" alt="" title="" style="visibility: hidden;">
+                            <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Team</button>
+                                    <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                                    {% for team in teams %}
+                                        {% if team != 'BKN' %}
+                                        <a class="dropdown-item" href="#" data-team-abbr="{{ team }}" data-team-id="{{ teams[team].id }}">{{ teams[team].city }} {{ teams[team].name }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-dark" id="set-roster-r" disabled>Choose Lineup</button>
+                            </div>
+                        </div>
+
+                        <!-- Collapsable Lineup -->
+                        <div class="collapse" id="right-lineup-collapse">
+                            <div class="card card-body">
+                                <form id="right-yearbook-form" action="">
+                                    <div class="row" id="right-lineup-yearbook"></div>
+                                </form>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button form="right-yearbook-form" id="right-lineup-confirm" type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
+                                    <button id="right-lineup-collapse-close" type="button" class="btn btn-outline-dark">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Collapsable Stats Table -->
+                        <div class="collapse collapse-stats" id="collapseExample">
+                            <div id="stats-tab" class="card card-body">
+                                <div class="container">
+                                    <span id="right-stats-table-header">2017-18 stats vs. Brooklyn Nets</span>
+                                    <table id="opponents-table" class="table">
+                                        <tr>
+                                            <th>GP</th>
+                                            <th>W</th>
+                                            <th>L</th>
+                                            <th>WIN%</th>
+                                            <th>MIN</th>
+                                            <th>PTS</th>
+                                            <th>FGM</th>
+                                            <th>FGA</th>
+                                            <th>FG%</th>
+                                            <th>3PM</th>
+                                            <th>3PA</th>
+                                            <th>3P%</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="right-tab-gp"></td>
+                                            <td id="right-tab-w"></td>
+                                            <td id="right-tab-l"></td>
+                                            <td id="right-tab-winpct"></td>
+                                            <td id="right-tab-min"></td>
+                                            <td id="right-tab-pts"></td>
+                                            <td id="right-tab-fgm"></td>
+                                            <td id="right-tab-fga"></td>
+                                            <td id="right-tab-fgpct"></td>
+                                            <td id="right-tab-3pm"></td>
+                                            <td id="right-tab-3pa"></td>
+                                            <td id="right-tab-3ppct"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>FTM</th>
+                                            <th>FTA</th>
+                                            <th>FT%</th>
+                                            <th>OREB</th>
+                                            <th>DREB</th>
+                                            <th>REB</th>
+                                            <th>AST</th>
+                                            <th>TOV</th>
+                                            <th>STL</th>
+                                            <th>BLK</th>
+                                            <th>BLKA</th>
+                                            <th>PF</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="right-tab-ftm"></td>
+                                            <td id="right-tab-fta"></td>
+                                            <td id="right-tab-ftpct"></td>
+                                            <td id="right-tab-oreb"></td>
+                                            <td id="right-tab-dreb"></td>
+                                            <td id="right-tab-reb"></td>
+                                            <td id="right-tab-ast"></td>
+                                            <td id="right-tab-tov"></td>
+                                            <td id="right-tab-stl"></td>
+                                            <td id="right-tab-blk"></td>
+                                            <td id="right-tab-blka"></td>
+                                            <td id="right-tab-pf"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                          <!-- Team Row -->
+                          <div class="row" id="right-team-dash">
+                            <div class="col-lg-2" id="player_spacer"></div>
+                                <div class="col-lg-8 col-sm-8 text-center mb-4">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>    
+        </section>
+
+
+        <!-- Footer -->
+        <div id='prefooter1'></div>
+        <div id='prefooter2'></div>
+        <footer class='py-5'>
+            <div class='container'>
+                <div>
+                    <p class="m-0 text-center text-white">&copy; 2018 Gabriel Now</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src='./../static/app.js'></script>
+    <script type="text/javascript" src='./../static/lineup.js'></script>
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+</html>
+
+
+
+
+
+
+
+<!-- Left side drop down -->
+<!--                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                      <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Team
+                        </button>
+                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                        {% for team in teams %}
+                            <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
+                        {% endfor %}
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-secondary" id='set-roster-1' disabled>Set Roster</button>
+                    </div> -->
+
+
+
+
+
+<!-- Old way of doing place holder images -->
+<!--                 <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-2" id="player_spacer"></div>
+
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img id="right-round-0" data-player-id="" data-team-id="" class="img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
+                        <h4 id="right-name-0" class="player_name"></h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img id="right-round-1" data-player-id="" data-team-id="" class="img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
+                        <h4 id="right-name-1" class="player_name"></h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img id="right-round-2" data-player-id="" data-team-id="" class="img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
+                        <h4 id="right-name-2" class="player_name"></h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img id="right-round-3" data-player-id="" data-team-id="" class="img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
+                        <h4 id="right-name-3" class="player_name"></h4>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img id="right-round-4" data-player-id="" data-team-id="" class="img-fluid d-block mx-auto" src="./../static/headshots/0/no-headshot.png" alt="">
+                        <h4 id="right-name-4" class="player_name"></h4>
+                    </div>
+                  
+                  </div>
+                </div> -->
