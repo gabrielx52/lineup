@@ -160,7 +160,7 @@ TEAMS = {
         'colors': ['001D4A', 'FEAC2D', 'B0B2B5']
     }, 'LAC': {
         'abbr': 'LAC',
-        'city': 'Los Angeles',
+        'city': 'LA',
         'code': 'clippers',
         'conference': 'Western',
         'displayAbbr': 'LAC',

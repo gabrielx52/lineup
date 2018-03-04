@@ -104,12 +104,12 @@ $(document).ready(function() {
         let teamLineup = JSON.parse(localStorage["teamLineup"])
         let players = teamLineup["players"]
         let teamID = teamLineup["teamID"]
-        var teamColors = JSON.parse(localStorage["team_colors"])[teamID]
+        let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
         let str = '<div class="col-lg-2" id="player_spacer"></div>'
 
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
-            var playerID = players[playerObj]["ID"]
+            let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
                             `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
@@ -144,13 +144,14 @@ $(document).ready(function() {
         for(var playerObj in oppRoster) {
             let playerName = oppRoster[playerObj]["PLAYER"]
             let teamID = oppRoster[playerObj]["TeamID"]
+            let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
             let playerID = oppRoster[playerObj]["PLAYER_ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             // console.log(playerName)
             str = str + '<div class="col-lg-4 col-md-6 mb-4">' +
                             '<div class="card yearbook-card">' +
                                 `<a href="#"><img onerror="imgError(this);" class="card-img-top" src="./../static/headshots/${teamID}/${playerID}.png" alt=""></a>` +
-                                '<div class="card-footer yearbook-footer">' +
+                                `<div class="card-footer yearbook-footer" style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};">` +
                                     '<div class="form-check">' +
                                         `<input value="${playerID}" data-player-id="${playerID}" data-team-id="${teamID}" data-player-name="${playerName}" type="checkbox" class="form-check-input right-yearbook-input" id="exampleCheck1">` +
                                         `<label class="form-check-label" for="exampleCheck1">${playerName}</label>` +

@@ -18,6 +18,8 @@ section {
     height: 3rem;
     padding: 0.25rem;
     overflow: hidden;
+    border-top: 2px solid;
+    color: #ececec;
 }
 .yearbook-card {
     border: none;
@@ -27,6 +29,11 @@ section {
 /*Team Card*/
 .team-card {
 
+}
+.form-check-label {
+    font-family: 'Anton', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 .team-card h4 {
