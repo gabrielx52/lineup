@@ -6,7 +6,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-        
+
         <!-- CSS -->
         <link rel="stylesheet" href='./../static/style.css'>
 
@@ -15,6 +15,10 @@
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" sizes="32x32" href="./../static/fav.png">
+
+        <!-- Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
 
         <title>Main Page</title>
     </head>
@@ -37,6 +41,11 @@
                         <div class="card-header">
                             <img data-team-id="1610612751" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
                             <button type="button" class="btn btn-dark" id="set-roster-l" disabled>Choose Lineup</button>
+
+                            <button type="button" id="left-stats-toggle" class="btn-sm btn-warning" >Stats</button>
+                            <button type="button" id="left-graph-toggle" class="btn-sm btn-warning" >Graph</button>
+
+
                         </div>
 
                         <!-- Collapsable Lineup -->
@@ -52,15 +61,61 @@
                                 </div>
                             </div>
                         </div>
+                        
+                            
+                        
+                        <!-- Collapsable Graph Div -->
+                        <div class="collapse" id="left-collapse-graph">
+                            <div class="card card-body">
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                                <script>
+                                var ctx = document.getElementById("myChart").getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                                        datasets: [{
+                                            label: '# of Votes',
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255,99,132,1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero:true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                                </script>
+                            </div>
+                        </div>
+
 
                         <!-- Collapsable Stats Table -->
-                        <div class="collapse collapse-stats" id="collapseExample">
+                        <div class="collapse collapse-stats" id="left-collapse-stats">
                             <div id="stats-tab" class="card card-body">
                                 <div class="container">
-                                    <div class="stats-header">
-                                        <span id="left-stats-table-header"></span>
-                                        <button type="button" class="btn-sm btn-warning float-lg-right" disabled>Graph</button>
-                                    </div>
+                                    <span id="left-stats-table-header">Select team to view stats.</span>
                                     <table id="nets-table" class="table">
                                         <tr>
                                             <th>GP</th>
@@ -121,7 +176,8 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>                
+                        </div>
+            
                         <div class="card-body">
                             <!-- Team Row -->
                             <div class="row" id="left-team-dash">
@@ -277,6 +333,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src='./../static/app.js'></script>
     <script type="text/javascript" src='./../static/lineup.js'></script>
+    <script type="text/javascript" src='./../static/graph.js'></script>
     <script type=text/javascript>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>

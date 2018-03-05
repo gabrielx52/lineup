@@ -29,7 +29,7 @@ $(document).ready(function() {
                 let oppsStats = response['opp_stats']
                 let oppRoster = response['opp_roster']
                 let teamColors = response['team_colors']
-                console.log(teamColors)
+
                 $("#loader").removeClass("loader");
 
                 $("#team2-img").attr({
