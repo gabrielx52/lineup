@@ -40,10 +40,20 @@ def get_team_coaches(team_id):
     return roster.coaches()
 
 
-def get_team_lineup_vs_specific_team_stats(team_id, opponent_id=0):
+def get_team_lineup_vs_specific_team_stats(team_id=1610612751, opponent_id=0):
     """Get all lineups and stats vs specific team."""
-    lineups = team.TeamLineups(team_id, opponent_team_id=opponent_id)
-    return lineups.lineups()
+    team_vs_opp_raw = team.TeamLineups(team_id, opponent_team_id=opponent_id)
+    opp_vs_team_raw = team.TeamLineups(opponent_id, opponent_team_id=team_id)
+    team_vs_opp = lineup_group_id_parser(team_vs_opp_raw.lineups())
+    opp_vs_team = lineup_group_id_parser(opp_vs_team_raw.lineups())
+    return {"lineups": {team_id: team_vs_opp, opponent_id: opp_vs_team}}
+
+
+def lineup_group_id_parser(lineups):
+    """Parse GROUP_ID str into list of IDs."""
+    for lineup in lineups:
+        lineup['GROUP_ID'] = lineup['GROUP_ID'].split(' - ')
+    return lineups
 
 
 def convert_team_id_to_name(team_id):

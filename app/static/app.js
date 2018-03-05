@@ -10,7 +10,7 @@ $(document).ready(function() {
     $(".dropdown-item").click(function() {
         let teamAbbr = $(this).data("team-abbr")
         let teamName = $(this).text()
-        let teamId = $(this).data("team-id")
+        let teamID = $(this).data("team-id")
         $("#team2-img").attr({"style": "visibility: hidden"});
         $("#loader").addClass("loader");
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
             type: "POST",
             url: "/getTeamVsTeamData",
             dataType: 'json',
-            data: {"teamId": JSON.stringify(teamId)},
+            data: {"teamID": JSON.stringify(teamID)},
             success: function(response) {
                 let netsStats = response['nets_stats']
                 let netsRoster = response['nets_roster']
@@ -147,6 +147,7 @@ $(document).ready(function() {
                     `${oppsStats['BLKA'].toFixed(1)}`)
                 $("#right-tab-pf").text(
                     `${oppsStats['PF'].toFixed(1)}`)
+                lineupVsTeamStatsAjax(teamID);
             },
             error: function(error) {
                 console.log(error);
@@ -156,3 +157,6 @@ $(document).ready(function() {
     });
 
 });
+
+
+

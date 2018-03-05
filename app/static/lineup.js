@@ -37,7 +37,6 @@ $(document).ready(function() {
 
 
 
-
         // Listening for checkboxes being checked/unchecked.
         $("input.left-yearbook-input").on("change", function(event) {
             // Enable checkboxes if less than five are checked.
@@ -117,7 +116,7 @@ $(document).ready(function() {
                         '</div>'
         };
         $("#left-team-dash").html(str);
-
+        
         $("#left-lineup-collapse").collapse("hide");
     });
 
