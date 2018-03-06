@@ -5,13 +5,13 @@ from api_script import get_player_list
 
 import requests
 
-from team_dict import teamDict
+from team_dict import TEAMS
 
 
 def make_team_id_folders():
     """Make team id folders for headshots."""
-    for team in teamDict:
-        os.makedirs('./static/headshots/{}'.format(teamDict[team]))
+    for team in TEAMS:
+        os.makedirs('./static/headshots/{}'.format(TEAMS[team]['id']))
 
 
 def headshot_harvester():

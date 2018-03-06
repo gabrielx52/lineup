@@ -10,26 +10,25 @@ $(document).ready(function() {
     $(".dropdown-item").click(function() {
         let teamAbbr = $(this).data("team-abbr")
         let teamName = $(this).text()
-        let teamId = $(this).data("team-id")
+        let teamID = $(this).data("team-id")
         $("#team2-img").attr({"style": "visibility: hidden"});
         $("#loader").addClass("loader");
 
         $("#left-stats-table-header").text(
             `2017-18 stats vs. ${teamName}`);
 
-
         $.ajax({
             type: "POST",
             url: "/getTeamVsTeamData",
             dataType: 'json',
-            data: {"teamId": JSON.stringify(teamId)},
+            data: {"teamID": JSON.stringify(teamID)},
             success: function(response) {
                 let netsStats = response['nets_stats']
                 let netsRoster = response['nets_roster']
-
                 let oppsStats = response['opp_stats']
                 let oppRoster = response['opp_roster']
-                
+                let teamColors = response['team_colors']
+
                 $("#loader").removeClass("loader");
 
                 $("#team2-img").attr({
@@ -41,6 +40,7 @@ $(document).ready(function() {
                 localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
                 localStorage.setItem("nets_roster", JSON.stringify(netsRoster));
                 localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
+                localStorage.setItem("team_colors", JSON.stringify(teamColors))
                 
                 $(".collapse-stats").collapse()
                 $("#set-roster-r").removeAttr("disabled")
@@ -146,6 +146,7 @@ $(document).ready(function() {
                     `${oppsStats['BLKA'].toFixed(1)}`)
                 $("#right-tab-pf").text(
                     `${oppsStats['PF'].toFixed(1)}`)
+                lineupVsTeamStatsAjax(teamID);
             },
             error: function(error) {
                 console.log(error);
