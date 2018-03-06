@@ -5,9 +5,6 @@ $(document).ready(function(){
     $("#left-stats-toggle").click(function() {
         $("#left-collapse-stats").collapse("toggle");
     });
-
-    // $("#left-fg-graph").click(makeTheFGGraph())
-
 });
 
 

@@ -55,48 +55,11 @@ $(document).ready(function() {
 
 
                 let teamFive = $("input.left-yearbook-input:checked")
-                let teamLineup = {"teamID": teamFive[0].attributes["data-team-id"].value,
-                                  "GROUP_KEY": [teamFive[0].attributes["data-player-id"].value,
-                                                teamFive[1].attributes["data-player-id"].value,
-                                                teamFive[2].attributes["data-player-id"].value,
-                                                teamFive[3].attributes["data-player-id"].value,
-                                                teamFive[4].attributes["data-player-id"].value].sort().join(''),
-                                 "players": {
-                                     "player1": {
-                                        "ID": teamFive[0].attributes["data-player-id"].value,
-                                        "NAME": teamFive[0].attributes["data-player-name"].value
-                                    },
-                                     "player2": {
-                                        "ID": teamFive[1].attributes["data-player-id"].value,
-                                        "NAME": teamFive[1].attributes["data-player-name"].value
-                                    },
-                                     "player3": {
-                                        "ID": teamFive[2].attributes["data-player-id"].value,
-                                        "NAME": teamFive[2].attributes["data-player-name"].value
-                                    },
-                                     "player4": {
-                                        "ID": teamFive[3].attributes["data-player-id"].value,
-                                        "NAME": teamFive[3].attributes["data-player-name"].value
-                                    },
-                                     "player5": {
-                                        "ID": teamFive[4].attributes["data-player-id"].value,
-                                        "NAME": teamFive[4].attributes["data-player-name"].value
-                                    }
-                                }
-                             }
-
+                let teamLineup = teamLineupObjectifier(teamFive)
                 localStorage.setItem("teamLineup", JSON.stringify(teamLineup));
             }
         })
     });
-
-
-
-
-
-
-
-
 
 
 
@@ -115,7 +78,7 @@ $(document).ready(function() {
             let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
-                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
+                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto lineup-pic" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
                             `<h4 style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="player_name">${playerName}</h4>` +
                         '</div>'
         };
@@ -182,37 +145,8 @@ $(document).ready(function() {
                 // Disable checkboxes if more than five are checked. 
                 $("input.right-yearbook-input:not(:checked)").attr("disabled", true);
 
-
                 let oppFive = $("input.right-yearbook-input:checked")
-                let oppLineup = {"teamID": oppFive[0].attributes["data-team-id"].value,
-                                 "GROUP_ID": [oppFive[0].attributes["data-player-id"].value,
-                                              oppFive[1].attributes["data-player-id"].value,
-                                              oppFive[2].attributes["data-player-id"].value,
-                                              oppFive[3].attributes["data-player-id"].value,
-                                              oppFive[4].attributes["data-player-id"].value].sort(),
-                                 "players": {
-                                     "player1": {
-                                        "ID": oppFive[0].attributes["data-player-id"].value,
-                                        "NAME": oppFive[0].attributes["data-player-name"].value
-                                    },
-                                     "player2": {
-                                        "ID": oppFive[1].attributes["data-player-id"].value,
-                                        "NAME": oppFive[1].attributes["data-player-name"].value
-                                    },
-                                     "player3": {
-                                        "ID": oppFive[2].attributes["data-player-id"].value,
-                                        "NAME": oppFive[2].attributes["data-player-name"].value
-                                    },
-                                     "player4": {
-                                        "ID": oppFive[3].attributes["data-player-id"].value,
-                                        "NAME": oppFive[3].attributes["data-player-name"].value
-                                    },
-                                     "player5": {
-                                        "ID": oppFive[4].attributes["data-player-id"].value,
-                                        "NAME": oppFive[4].attributes["data-player-name"].value
-                                    }
-                                }
-                             }
+                let oppLineup = teamLineupObjectifier(oppFive)
 
                 localStorage.setItem("oppLineup", JSON.stringify(oppLineup));
             }
@@ -233,7 +167,7 @@ $(document).ready(function() {
             let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
             str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
-                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
+                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto lineup-pic" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
                             `<h4 style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="player_name">${playerName}</h4>` +
                         '</div>'
         };
@@ -255,3 +189,38 @@ function imgError(image) {
     image.src = "./../static/headshots/0/grey-silhouette.png";
     return true;
 }
+
+
+
+function teamLineupObjectifier(checkFive) {
+    let teamLineup = {"teamID": checkFive[0].attributes["data-team-id"].value,
+                      "GROUP_KEY": [checkFive[0].attributes["data-player-id"].value,
+                                    checkFive[1].attributes["data-player-id"].value,
+                                    checkFive[2].attributes["data-player-id"].value,
+                                    checkFive[3].attributes["data-player-id"].value,
+                                    checkFive[4].attributes["data-player-id"].value].sort().join(''),
+                     "players": {
+                         "player1": {
+                            "ID": checkFive[0].attributes["data-player-id"].value,
+                            "NAME": checkFive[0].attributes["data-player-name"].value
+                        },
+                         "player2": {
+                            "ID": checkFive[1].attributes["data-player-id"].value,
+                            "NAME": checkFive[1].attributes["data-player-name"].value
+                        },
+                         "player3": {
+                            "ID": checkFive[2].attributes["data-player-id"].value,
+                            "NAME": checkFive[2].attributes["data-player-name"].value
+                        },
+                         "player4": {
+                            "ID": checkFive[3].attributes["data-player-id"].value,
+                            "NAME": checkFive[3].attributes["data-player-name"].value
+                        },
+                         "player5": {
+                            "ID": checkFive[4].attributes["data-player-id"].value,
+                            "NAME": checkFive[4].attributes["data-player-name"].value
+                        }
+                    }
+                 }
+    return teamLineup
+};

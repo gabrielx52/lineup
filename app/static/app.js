@@ -17,7 +17,6 @@ $(document).ready(function() {
         $("#left-stats-table-header").text(
             `2017-18 stats vs. ${teamName}`);
 
-
         $.ajax({
             type: "POST",
             url: "/getTeamVsTeamData",
@@ -157,6 +156,3 @@ $(document).ready(function() {
     });
 
 });
-
-
-
