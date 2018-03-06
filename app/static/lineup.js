@@ -13,7 +13,6 @@ $(document).ready(function() {
         $("#left-lineup-collapse").collapse("show");
         var teamID = "1610612751"
         var teamColors = JSON.parse(localStorage["team_colors"])[teamID]
-        console.log(teamColors)
         for(var playerObj in netsRoster) {
             var playerName = netsRoster[playerObj]["PLAYER"]
             var playerID = netsRoster[playerObj]["PLAYER_ID"]
@@ -57,6 +56,11 @@ $(document).ready(function() {
 
                 let teamFive = $("input.left-yearbook-input:checked")
                 let teamLineup = {"teamID": teamFive[0].attributes["data-team-id"].value,
+                                  "GROUP_KEY": [teamFive[0].attributes["data-player-id"].value,
+                                                teamFive[1].attributes["data-player-id"].value,
+                                                teamFive[2].attributes["data-player-id"].value,
+                                                teamFive[3].attributes["data-player-id"].value,
+                                                teamFive[4].attributes["data-player-id"].value].sort().join(''),
                                  "players": {
                                      "player1": {
                                         "ID": teamFive[0].attributes["data-player-id"].value,
@@ -84,8 +88,6 @@ $(document).ready(function() {
                 localStorage.setItem("teamLineup", JSON.stringify(teamLineup));
             }
         })
-
-
     });
 
 
@@ -106,6 +108,8 @@ $(document).ready(function() {
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
         let str = '<div class="col-lg-2" id="player_spacer"></div>'
 
+        checkForCurrentLineupStats(teamLineup, teamID)
+
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
             let playerID = players[playerObj]["ID"]
@@ -116,7 +120,7 @@ $(document).ready(function() {
                         '</div>'
         };
         $("#left-team-dash").html(str);
-        
+
         $("#left-lineup-collapse").collapse("hide");
     });
 
@@ -181,6 +185,11 @@ $(document).ready(function() {
 
                 let oppFive = $("input.right-yearbook-input:checked")
                 let oppLineup = {"teamID": oppFive[0].attributes["data-team-id"].value,
+                                 "GROUP_ID": [oppFive[0].attributes["data-player-id"].value,
+                                              oppFive[1].attributes["data-player-id"].value,
+                                              oppFive[2].attributes["data-player-id"].value,
+                                              oppFive[3].attributes["data-player-id"].value,
+                                              oppFive[4].attributes["data-player-id"].value].sort(),
                                  "players": {
                                      "player1": {
                                         "ID": oppFive[0].attributes["data-player-id"].value,

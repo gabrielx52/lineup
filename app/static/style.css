@@ -9,9 +9,12 @@ section {
 
 
 /*This hides content on the sides*/
-body .container {
+/*This breaks the table overflow scroll*/
+
+/*body .container {
     overflow: hidden;
-}
+}*/
+
 /*Might not keep it*/
 
 

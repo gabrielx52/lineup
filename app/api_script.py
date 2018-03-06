@@ -40,19 +40,29 @@ def get_team_coaches(team_id):
     return roster.coaches()
 
 
+def small_lineup_vs_team_stats(lineups_raw):
+    """Shortened version of above, use all player IDs as group key."""
+    keys = ['GROUP_ID', 'FGA', 'FGM', 'FG_PCT', 'FG3A', 'FG3M', 'FG3_PCT', 'FTA', 'FTM', 'FT_PCT']
+    short_lineup = {}
+    for lineup in lineups_raw:
+        short_lineup[''.join(lineup['GROUP_ID'])] = {key: lineup[key] for key in keys}
+    return short_lineup
+
+
 def get_team_lineup_vs_specific_team_stats(team_id=1610612751, opponent_id=0):
     """Get all lineups and stats vs specific team."""
     team_vs_opp_raw = team.TeamLineups(team_id, opponent_team_id=opponent_id)
     opp_vs_team_raw = team.TeamLineups(opponent_id, opponent_team_id=team_id)
-    team_vs_opp = lineup_group_id_parser(team_vs_opp_raw.lineups())
-    opp_vs_team = lineup_group_id_parser(opp_vs_team_raw.lineups())
-    return {"lineups": {team_id: team_vs_opp, opponent_id: opp_vs_team}}
+    team_vs_opp = small_lineup_vs_team_stats(lineup_group_id_parser(team_vs_opp_raw.lineups()))
+    opp_vs_team = small_lineup_vs_team_stats(lineup_group_id_parser(opp_vs_team_raw.lineups()))
+    return {team_id: team_vs_opp, opponent_id: opp_vs_team}
 
 
 def lineup_group_id_parser(lineups):
     """Parse GROUP_ID str into list of IDs."""
     for lineup in lineups:
-        lineup['GROUP_ID'] = lineup['GROUP_ID'].split(' - ')
+        sorted_lineup = sorted(lineup['GROUP_ID'].split(' - '))
+        lineup['GROUP_ID'] = sorted_lineup
     return lineups
 
 
