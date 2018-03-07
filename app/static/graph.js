@@ -33,6 +33,7 @@ function checkForCurrentLineupStats(teamLineup, teamID) {
     let allTeamLineups = lineups[teamID]
     let lineupKey = teamLineup["GROUP_KEY"]
     if(allTeamLineups[lineupKey]) {
+        createDatasets(allTeamLineups, lineupKey)
         console.log(allTeamLineups[lineupKey])
     } else {
         console.log(`No data on selected lineup vs selected team.`)
@@ -83,6 +84,25 @@ let leftChart = new Chart(ctx, {
         }
       }
     });
+
+
+function createDatasets(lineups, lineupKey) {
+    // Sorting the JSON to find the indx of the match
+    // Then creating the datasets and colors for the graph to render
+    let colors = []
+    let attempts = []
+    let made = []
+    let percent = []
+    for(var lineup in lineups){
+        if(lineup == lineupKey) {
+            console.log("We've got a match.")
+        } else {
+            console.log(lineup)
+            console.log("Not a match.")
+        }
+    }
+
+}
 
 
 function makeTheFTGraph() {

@@ -33,39 +33,18 @@ $(document).ready(function() {
         $("#left-lineup-yearbook").html(str);
 
 
-
-
-
         // Listening for checkboxes being checked/unchecked.
         $("input.left-yearbook-input").on("change", function() {
-            // Enable checkboxes if less than five are checked.
-            if($("input.left-yearbook-input:checked").length != 5) {
-                $("input.left-yearbook-input:not(:checked)").attr("disabled", false);
-                $("#left-lineup-confirm").attr("disabled", true)
-                                          .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
-
-            };
-            if($("input.left-yearbook-input:checked").length == 5) {
-
-                // Enable confirm lineup button if five boxes checked.
-                $("#left-lineup-confirm").removeAttr("disabled")
-                                          .css({"color": "white"});
-                // Disable checkboxes if more than five are checked. 
-                $("input.left-yearbook-input:not(:checked)").attr("disabled", true);
-
-
-                let teamFive = $("input.left-yearbook-input:checked")
-                let teamLineup = teamLineupObjectifier(teamFive)
-                localStorage.setItem("teamLineup", JSON.stringify(teamLineup));
-            }
-        })
+            checkedBoxes("left")
+        }
+        )
     });
 
 
 
     // Close left side lineup and confirm picks.
     $("#left-lineup-confirm").click(function() {
-        let teamLineup = JSON.parse(localStorage["teamLineup"])
+        let teamLineup = JSON.parse(localStorage["leftLineup"])
         let players = teamLineup["players"]
         let teamID = teamLineup["teamID"]
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
@@ -129,37 +108,15 @@ $(document).ready(function() {
         $("#right-lineup-yearbook").html(str);
         
         // Listening for checkboxes being checked/unchecked.
-        $("input.right-yearbook-input").on("change", function() {checkedBoxes("right")}
-        //     function() {
-        //     // Enable checkboxes if less than five are checked.
-        //     let sider = "right"
-        //     if($(`input.${sider}-yearbook-input:checked`).length != 5) {
-        //         $("input.right-yearbook-input:not(:checked)").attr("disabled", false);
-        //         $("#right-lineup-confirm").attr("disabled", true)
-        //                                   .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
-
-        //     };
-        //     if($("input.right-yearbook-input:checked").length == 5) {
-
-        //         // Enable confirm lineup button if five boxes checked.
-        //         $("#right-lineup-confirm").removeAttr("disabled")
-        //                                   .css({"color": "white"});
-        //         // Disable checkboxes if more than five are checked. 
-        //         $("input.right-yearbook-input:not(:checked)").attr("disabled", true);
-
-        //         let oppFive = $("input.right-yearbook-input:checked")
-        //         let oppLineup = teamLineupObjectifier(oppFive)
-
-        //         localStorage.setItem("oppLineup", JSON.stringify(oppLineup));
-        //     }
-        // }
-        )
+        $("input.right-yearbook-input").on("change", function() {
+            checkedBoxes("right")
+        })
     });
 
 
     // Close right side lineup and confirm picks.
     $("#right-lineup-confirm").click(function() {
-        let oppLineup = JSON.parse(localStorage["oppLineup"])
+        let oppLineup = JSON.parse(localStorage["rightLineup"])
         let players = oppLineup["players"]
         let teamID = oppLineup["teamID"]
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
@@ -233,7 +190,6 @@ function teamLineupObjectifier(checkFive) {
 
 function checkedBoxes(side) {
             // Enable checkboxes if less than five are checked.
-            console.log("check one")
             if($(`input.${side}-yearbook-input:checked`).length != 5) {
                 $(`input.${side}-yearbook-input:not(:checked)`).attr("disabled", false);
                 $(`#${side}-lineup-confirm`).attr("disabled", true)
@@ -250,7 +206,6 @@ function checkedBoxes(side) {
 
                 let checkedFive = $(`input.${side}-yearbook-input:checked`)
                 let lineupObj = teamLineupObjectifier(checkedFive)
-
-                localStorage.setItem(`oppLineup`, JSON.stringify(lineupObj));
+                localStorage.setItem(`${side}Lineup`, JSON.stringify(lineupObj));
             }
         }
