@@ -33,6 +33,7 @@ function checkForCurrentLineupStats(teamLineup, teamID) {
     let allTeamLineups = lineups[teamID]
     let lineupKey = teamLineup["GROUP_KEY"]
     if(allTeamLineups[lineupKey]) {
+        createDatasets(allTeamLineups, lineupKey)
         console.log(allTeamLineups[lineupKey])
     } else {
         console.log(`No data on selected lineup vs selected team.`)
@@ -83,6 +84,47 @@ let leftChart = new Chart(ctx, {
         }
       }
     });
+
+
+function createDatasets(lineups, lineupKey) {
+    // Sorting the JSON to find the indx of the match
+    // Then creating the datasets and colors for the graph to render
+    let attemptBorderColors = []
+    let attemptFillColors = []
+    let attempts = []
+    let madeBorderColors = []
+    let madeFillColors = []
+    let made = []
+    let percent = []
+    for(var lineup in lineups){
+        if(lineup == lineupKey) {
+            attemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            attemptBorderColors.push("rgba(255, 159, 64, 1)")
+            madeFillColors.push("rgba(255, 99, 132, 0.2)")
+            madeBorderColors.push("rgba(255, 99, 132, 1)")
+            attempts.push(lineups[lineup]["FGA"])
+            made.push(lineups[lineup]["FGM"])
+            percent.push(lineups[lineup]["FG_PCT"])
+            console.log("We've got a match.")
+        } else {
+            attemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            attemptBorderColors.push("rgba(192, 192, 192, 1)")
+            madeFillColors.push("rgba(0, 0, 0, 0.2)")
+            madeBorderColors.push("rgba(0, 0, 0, 1)")
+            attempts.push(lineups[lineup]["FGA"])
+            made.push(lineups[lineup]["FGM"])
+            percent.push(lineups[lineup]["FG_PCT"])
+            console.log(lineup)
+            console.log("Not a match.")
+        } 
+    }
+    console.log(attemptBorderColors)
+
+    // This is wrong
+    console.log(made)
+
+
+}
 
 
 function makeTheFTGraph() {
