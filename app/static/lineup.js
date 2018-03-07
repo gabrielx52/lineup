@@ -37,7 +37,7 @@ $(document).ready(function() {
 
 
         // Listening for checkboxes being checked/unchecked.
-        $("input.left-yearbook-input").on("change", function(event) {
+        $("input.left-yearbook-input").on("change", function() {
             // Enable checkboxes if less than five are checked.
             if($("input.left-yearbook-input:checked").length != 5) {
                 $("input.left-yearbook-input:not(:checked)").attr("disabled", false);
@@ -129,28 +129,31 @@ $(document).ready(function() {
         $("#right-lineup-yearbook").html(str);
         
         // Listening for checkboxes being checked/unchecked.
-        $("input.right-yearbook-input").on("change", function(event) {
-            // Enable checkboxes if less than five are checked.
-            if($("input.right-yearbook-input:checked").length != 5) {
-                $("input.right-yearbook-input:not(:checked)").attr("disabled", false);
-                $("#right-lineup-confirm").attr("disabled", true)
-                                          .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
+        $("input.right-yearbook-input").on("change", function() {checkedBoxes("right")}
+        //     function() {
+        //     // Enable checkboxes if less than five are checked.
+        //     let sider = "right"
+        //     if($(`input.${sider}-yearbook-input:checked`).length != 5) {
+        //         $("input.right-yearbook-input:not(:checked)").attr("disabled", false);
+        //         $("#right-lineup-confirm").attr("disabled", true)
+        //                                   .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
 
-            };
-            if($("input.right-yearbook-input:checked").length == 5) {
+        //     };
+        //     if($("input.right-yearbook-input:checked").length == 5) {
 
-                // Enable confirm lineup button if five boxes checked.
-                $("#right-lineup-confirm").removeAttr("disabled")
-                                          .css({"color": "white"});
-                // Disable checkboxes if more than five are checked. 
-                $("input.right-yearbook-input:not(:checked)").attr("disabled", true);
+        //         // Enable confirm lineup button if five boxes checked.
+        //         $("#right-lineup-confirm").removeAttr("disabled")
+        //                                   .css({"color": "white"});
+        //         // Disable checkboxes if more than five are checked. 
+        //         $("input.right-yearbook-input:not(:checked)").attr("disabled", true);
 
-                let oppFive = $("input.right-yearbook-input:checked")
-                let oppLineup = teamLineupObjectifier(oppFive)
+        //         let oppFive = $("input.right-yearbook-input:checked")
+        //         let oppLineup = teamLineupObjectifier(oppFive)
 
-                localStorage.setItem("oppLineup", JSON.stringify(oppLineup));
-            }
-        })
+        //         localStorage.setItem("oppLineup", JSON.stringify(oppLineup));
+        //     }
+        // }
+        )
     });
 
 
@@ -224,3 +227,30 @@ function teamLineupObjectifier(checkFive) {
                  }
     return teamLineup
 };
+
+
+
+
+function checkedBoxes(side) {
+            // Enable checkboxes if less than five are checked.
+            console.log("check one")
+            if($(`input.${side}-yearbook-input:checked`).length != 5) {
+                $(`input.${side}-yearbook-input:not(:checked)`).attr("disabled", false);
+                $(`#${side}-lineup-confirm`).attr("disabled", true)
+                                          .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
+
+            };
+            if($(`input.${side}-yearbook-input:checked`).length == 5) {
+
+                // Enable confirm lineup button if five boxes checked.
+                $(`#${side}-lineup-confirm`).removeAttr("disabled")
+                                          .css({"color": "white"});
+                // Disable checkboxes if more than five are checked. 
+                $(`input.${side}-yearbook-input:not(:checked)`).attr("disabled", true);
+
+                let checkedFive = $(`input.${side}-yearbook-input:checked`)
+                let lineupObj = teamLineupObjectifier(checkedFive)
+
+                localStorage.setItem(`oppLineup`, JSON.stringify(lineupObj));
+            }
+        }
