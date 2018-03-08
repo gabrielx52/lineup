@@ -7,6 +7,31 @@ $(document).ready(function(){
     });
 });
 
+let average = (array) => array.reduce((a, b) => a + b) / array.length;
+
+let fgAttemptBorderColors = []
+let fgAttemptFillColors = []
+let fgAttempts = []
+let fgMadeBorderColors = []
+let fgMadeFillColors = []
+let fgMade = []
+let fgPercent = []
+
+let ftAttemptBorderColors = []
+let ftAttemptFillColors = []
+let ftAttempts = []
+let ftMadeBorderColors = []
+let ftMadeFillColors = []
+let ftMade = []
+let ftPercent = []
+
+let fg3AttemptBorderColors = []
+let fg3AttemptFillColors = []
+let fg3Attempts = []
+let fg3MadeBorderColors = []
+let fg3MadeFillColors = []
+let fg3Made = []
+let fg3Percent = []
 
 function lineupVsTeamStatsAjax(teamID) {
 // Get team vs team lineup data, called after team stats load.
@@ -63,7 +88,7 @@ let leftChart = new Chart(ctx, {
             backgroundColor: [],
             borderColor: [],
             borderWidth: 2
-          }
+          },
         ]
     },
     options: {
@@ -81,6 +106,43 @@ let leftChart = new Chart(ctx, {
             }
           }]
 
+        },
+      annotation: {
+            annotations: [{
+                drawTime: 'afterDraw',
+                type: 'line',
+                borderDash: [8, 4],
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: null,
+                borderColor: '#ffc107',
+                borderWidth: 2,
+                label: {
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    enabled: true,
+                    content: 'Avg attempts',
+                    position: "right",
+                    fontColor: "rgb(0,0,0)",
+                    xPadding: null,
+                }
+            },
+            {
+                drawTime: 'afterDraw',
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: null,
+                borderColor: '#ffc107',
+                borderWidth: 2,
+                label: {
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    enabled: true,
+                    content: 'Avg made',
+                    position: "right",
+                    fontColor: "rgb(0,0,0)",
+                    xPadding: null,
+                }
+            }]
         }
       }
     });
@@ -89,63 +151,121 @@ let leftChart = new Chart(ctx, {
 function createDatasets(lineups, lineupKey) {
     // Sorting the JSON to find the indx of the match
     // Then creating the datasets and colors for the graph to render
-    let attemptBorderColors = []
-    let attemptFillColors = []
-    let attempts = []
-    let madeBorderColors = []
-    let madeFillColors = []
-    let made = []
-    let percent = []
+    fgAttemptBorderColors = []
+    fgAttemptFillColors = []
+    fgAttempts = []
+    fgMadeBorderColors = []
+    fgMadeFillColors = []
+    fgMade = []
+    fgPercent = []
+
+    ftAttemptBorderColors = []
+    ftAttemptFillColors = []
+    ftAttempts = []
+    ftMadeBorderColors = []
+    ftMadeFillColors = []
+    ftMade = []
+    ftPercent = []
+
+    fg3AttemptBorderColors = []
+    fg3AttemptFillColors = []
+    fg3Attempts = []
+    fg3MadeBorderColors = []
+    fg3MadeFillColors = []
+    fg3Made = []
+    fg3Percent = []
     for(var lineup in lineups){
         if(lineup == lineupKey) {
-            attemptFillColors.push("rgba(255, 159, 64, 0.2)")
-            attemptBorderColors.push("rgba(255, 159, 64, 1)")
-            madeFillColors.push("rgba(255, 99, 132, 0.2)")
-            madeBorderColors.push("rgba(255, 99, 132, 1)")
-            attempts.push(lineups[lineup]["FGA"])
-            made.push(lineups[lineup]["FGM"])
-            percent.push(lineups[lineup]["FG_PCT"])
-            console.log("We've got a match.")
+            if(lineups[lineup]["FGA"] != 0){
+            fgAttemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            fgAttemptBorderColors.push("rgba(255, 159, 64, 1)")
+            fgMadeFillColors.push("rgba(255, 99, 132, 0.2)")
+            fgMadeBorderColors.push("rgba(255, 99, 132, 1)")
+            fgAttempts.push(lineups[lineup]["FGA"])
+            fgMade.push(lineups[lineup]["FGM"])
+            fgPercent.push(lineups[lineup]["FG_PCT"])
+            } 
+            if(lineups[lineup]["FTA"] != 0){
+            ftAttemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            ftAttemptBorderColors.push("rgba(255, 159, 64, 1)")
+            ftMadeFillColors.push("rgba(255, 99, 132, 0.2)")
+            ftMadeBorderColors.push("rgba(255, 99, 132, 1)")
+            ftAttempts.push(lineups[lineup]["FTA"])
+            ftMade.push(lineups[lineup]["FTM"])
+            ftPercent.push(lineups[lineup]["FT_PCT"])
+            }  
+            if(lineups[lineup]["FT3A"] != 0){   
+            fg3AttemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            fg3AttemptBorderColors.push("rgba(255, 159, 64, 1)")
+            fg3MadeFillColors.push("rgba(255, 99, 132, 0.2)")
+            fg3MadeBorderColors.push("rgba(255, 99, 132, 1)")
+            fg3Attempts.push(lineups[lineup]["FG3A"])
+            fg3Made.push(lineups[lineup]["FG3M"])
+            fg3Percent.push(lineups[lineup]["FG3_PCT"])
+            }
         } else {
-            attemptFillColors.push("rgba(192, 192, 192, 0.2)")
-            attemptBorderColors.push("rgba(192, 192, 192, 1)")
-            madeFillColors.push("rgba(0, 0, 0, 0.2)")
-            madeBorderColors.push("rgba(0, 0, 0, 1)")
-            attempts.push(lineups[lineup]["FGA"])
-            made.push(lineups[lineup]["FGM"])
-            percent.push(lineups[lineup]["FG_PCT"])
-            console.log(lineup)
-            console.log("Not a match.")
+            if(lineups[lineup]["FGA"] != 0){
+            fgAttemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            fgAttemptBorderColors.push("rgba(192, 192, 192, 1)")
+            fgMadeFillColors.push("rgba(0, 0, 0, 0.2)")
+            fgMadeBorderColors.push("rgba(0, 0, 0, 1)")
+            fgAttempts.push(lineups[lineup]["FGA"])
+            fgMade.push(lineups[lineup]["FGM"])
+            fgPercent.push(lineups[lineup]["FG_PCT"])
+            }
+            if(lineups[lineup]["FTA"] != 0){
+            ftAttemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            ftAttemptBorderColors.push("rgba(192, 192, 192, 1)")
+            ftMadeFillColors.push("rgba(0, 0, 0, 0.2)")
+            ftMadeBorderColors.push("rgba(0, 0, 0, 1)")
+            ftAttempts.push(lineups[lineup]["FTA"])
+            ftMade.push(lineups[lineup]["FTM"])
+            ftPercent.push(lineups[lineup]["FT_PCT"])
+            }
+            if(lineups[lineup]["FG3A"] != 0){
+            fg3AttemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            fg3AttemptBorderColors.push("rgba(192, 192, 192, 1)")
+            fg3MadeFillColors.push("rgba(0, 0, 0, 0.2)")
+            fg3MadeBorderColors.push("rgba(0, 0, 0, 1)")
+            fg3Attempts.push(lineups[lineup]["FG3A"])
+            fg3Made.push(lineups[lineup]["FG3M"])
+            fg3Percent.push(lineups[lineup]["FG3_PCT"])
+            }
         } 
     }
-    console.log(attemptBorderColors)
-
-    // This is wrong
-    console.log(made)
-
-
 }
 
 
 function makeTheFTGraph() {
     removeData(leftChart)
-    leftChart.data.labels = [...Array(5).keys()]
-    leftChart.data.datasets[0].label = "Here now"
-    leftChart.data.datasets[0].data = [1, 2, 3, 4, 5]
-    leftChart.data.datasets[1].label = "Gone now"
-    leftChart.data.datasets[1].data = [6, 7, 8, 9, 10]
+    leftChart.data.labels = Array.apply(null, { length: ftMade.length })
+    leftChart.data.datasets[0].label = "FT made"
+    leftChart.data.datasets[0].data = ftMade
+    leftChart.data.datasets[0].backgroundColor = ftMadeFillColors
+    leftChart.data.datasets[0].borderColor = ftMadeBorderColors
+    leftChart.data.datasets[1].label = "FT attempts"
+    leftChart.data.datasets[1].data = ftAttempts
+    leftChart.data.datasets[1].backgroundColor = ftAttemptFillColors
+    leftChart.data.datasets[1].borderColor = ftAttemptBorderColors
+    leftChart.options.annotation.annotations[0].value = average(ftAttempts)
+    leftChart.options.annotation.annotations[1].value = average(ftMade)
     leftChart.update()
 
 }
 
-
 function makeTheFGGraph() {
     removeData(leftChart)
-    leftChart.data.labels = [...Array(5).keys()]
-    leftChart.data.datasets[0].label = "Here now"
-    leftChart.data.datasets[0].data = [1, 1, 1, 1, 1]
-    leftChart.data.datasets[1].label = "Gone now"
-    leftChart.data.datasets[1].data = [2, 2, 2, 2, 2]
+    leftChart.data.labels = Array.apply(null, { length: fgMade.length })
+    leftChart.data.datasets[0].label = "FG made"
+    leftChart.data.datasets[0].data = fgMade
+    leftChart.data.datasets[0].backgroundColor = fgMadeFillColors
+    leftChart.data.datasets[0].borderColor = fgMadeBorderColors
+    leftChart.data.datasets[1].label = "FG attempts"
+    leftChart.data.datasets[1].data = fgAttempts
+    leftChart.data.datasets[1].backgroundColor = fgAttemptFillColors
+    leftChart.data.datasets[1].borderColor = fgAttemptBorderColors
+    leftChart.options.annotation.annotations[0].value = average(fgAttempts)
+    leftChart.options.annotation.annotations[1].value = average(fgMade)
     leftChart.update()
 
 }
@@ -153,11 +273,17 @@ function makeTheFGGraph() {
 
 function makeTheFG3Graph() {
     removeData(leftChart)
-    leftChart.data.labels = [...Array(5).keys()]
-    leftChart.data.datasets[0].label = "Here now"
-    leftChart.data.datasets[0].data = [1, 1, 1, 1, 1]
-    leftChart.data.datasets[1].label = "Gone now"
-    leftChart.data.datasets[1].data = [2, 2, 2, 2, 2]
+    leftChart.data.labels = Array.apply(null, { length: fg3Made.length })
+    leftChart.data.datasets[0].label = "FG3 made"
+    leftChart.data.datasets[0].data = fg3Made
+    leftChart.data.datasets[0].backgroundColor = fg3MadeFillColors
+    leftChart.data.datasets[0].borderColor = fg3MadeBorderColors
+    leftChart.data.datasets[1].label = "FG3 attempts"
+    leftChart.data.datasets[1].data = fg3Attempts
+    leftChart.data.datasets[1].backgroundColor = fg3AttemptFillColors
+    leftChart.data.datasets[1].borderColor = fg3AttemptBorderColors
+    leftChart.options.annotation.annotations[0].value = average(fg3Attempts)
+    leftChart.options.annotation.annotations[1].value = average(fg3Made)
     leftChart.update()
 
 }
