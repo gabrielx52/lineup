@@ -42,8 +42,8 @@
                             <img data-team-id="1610612751" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
                             <button type="button" class="btn btn-dark" id="set-roster-l" disabled>Choose Lineup</button>
 
-                            <button type="button" id="left-stats-toggle" class="btn-sm btn-warning" >Stats</button>
-                            <button type="button" id="left-graph-toggle" class="btn-sm btn-warning" >Graph</button>
+                            <button type="button" id="left-stats-toggle" class="btn-sm btn-warning yellowDisabled" disabled>Stats</button>
+                            <button onclick="makeTheFGGraph()" type="button" id="left-graph-toggle" class="btn-sm btn-warning yellowDisabled" disabled>Graph</button>
 
 
                         </div>
@@ -56,7 +56,7 @@
                                     </div>
                                 </form>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button id='left-lineup-confirm' type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
+                                    <button id='left-lineup-confirm' type="button" class="btn btn-dark" disabled>Confirm Lineup</button>
                                     <button id='left-lineup-collapse-close' type="button" class="btn btn-outline-dark">Cancel</button>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button onclick="makeTheFGGraph()" type="button" id="left-fg-graph" class="btn-sm btn-warning" >FG</button>
                                     <button onclick="makeTheFG3Graph()" type="button" id="left-fg3-graph" class="btn-sm btn-warning" >3P</button>
-                                    <button onclick="makeTheFTGraph()" type="button" id="left-fgt-graph" class="btn-sm btn-warning" >FT</button>
+                                    <button onclick="makeTheFTGraph()" type="button" id="left-ft-graph" class="btn-sm btn-warning" >FT</button>
                                 </div>
 
                             <canvas id="myChart-left" width="400" height="400"></canvas>

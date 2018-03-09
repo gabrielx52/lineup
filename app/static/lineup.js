@@ -67,6 +67,8 @@ $(document).ready(function() {
         };
         str = str + `</div>`
         $("#left-team-dash").html(str);
+        $("#left-graph-toggle").removeAttr("disabled")
+                              .removeClass("yellowDisabled");
 
         $("#left-lineup-collapse").collapse("hide");
     });

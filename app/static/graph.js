@@ -1,37 +1,54 @@
 $(document).ready(function(){
     $("#left-graph-toggle").click(function() {
         $("#left-collapse-graph").collapse("toggle");
+        $("#left-collapse-stats").collapse("toggle");
+
+        $("#left-graph-toggle").addClass("yellowDisabled")
+                               .attr("disabled", "disabled");        
+        $("#left-stats-toggle").removeAttr("disabled")
+                               .removeClass("yellowDisabled");
+
     });
     $("#left-stats-toggle").click(function() {
         $("#left-collapse-stats").collapse("toggle");
+        $("#left-collapse-graph").collapse("toggle");
+
+        $("#left-stats-toggle").addClass("yellowDisabled")
+                               .attr("disabled", "disabled");        
+        $("#left-graph-toggle").removeAttr("disabled")
+                               .removeClass("yellowDisabled");
     });
 });
 
 let average = (array) => array.reduce((a, b) => a + b) / array.length;
 
-let fgAttemptBorderColors = []
-let fgAttemptFillColors = []
-let fgAttempts = []
-let fgMadeBorderColors = []
-let fgMadeFillColors = []
-let fgMade = []
-let fgPercent = []
+let fgLineupIDs
+let ftLineupIDs
+let fg3LineupIDs
 
-let ftAttemptBorderColors = []
-let ftAttemptFillColors = []
-let ftAttempts = []
-let ftMadeBorderColors = []
-let ftMadeFillColors = []
-let ftMade = []
-let ftPercent = []
+let fgAttemptBorderColors
+let fgAttemptFillColors
+let fgAttempts
+let fgMadeBorderColors
+let fgMadeFillColors
+let fgMade
+let fgPercent
 
-let fg3AttemptBorderColors = []
-let fg3AttemptFillColors = []
-let fg3Attempts = []
-let fg3MadeBorderColors = []
-let fg3MadeFillColors = []
-let fg3Made = []
-let fg3Percent = []
+let ftAttemptBorderColors
+let ftAttemptFillColors
+let ftAttempts
+let ftMadeBorderColors
+let ftMadeFillColors
+let ftMade
+let ftPercent
+
+let fg3AttemptBorderColors
+let fg3AttemptFillColors
+let fg3Attempts
+let fg3MadeBorderColors
+let fg3MadeFillColors
+let fg3Made
+let fg3Percent
 
 function lineupVsTeamStatsAjax(teamID) {
 // Get team vs team lineup data, called after team stats load.
@@ -96,7 +113,7 @@ let leftChart = new Chart(ctx, {
           yAxes: [{
             stacked: false,
             ticks: {
-              beginAtZero: true
+                beginAtZero: true
             }
           }],
           xAxes: [{
@@ -147,14 +164,64 @@ let leftChart = new Chart(ctx, {
         },
         legend: {
             
+        },
+        tooltips: {
+            callbacks: {
+                title: function(tooltipItem, data) {
+                    return lineupNames(data['labels'][tooltipItem[0]['index']])
+                    return data['labels'][tooltipItem[0]['index']]
+                },
+                beforeLabel: function(tooltipItem, data){
+                  var dataset2 = data['datasets'][1];
+                  var attempts = dataset2['data'][tooltipItem['index']]
+                  return attempts + ' attempt(s)'
+                },
+                label: function(tooltipItem, data) {
+                  var dataset1 = data['datasets'][0];
+                  var made = dataset1['data'][tooltipItem['index']]
+                  return  + made + ' made'
+
+                },
+                afterLabel: function(tooltipItem, data) {
+                  var dataset1 = data['datasets'][0];
+                  var dataset2 = data['datasets'][1];
+                  var percent = Math.round((dataset1['data'][tooltipItem['index']] / dataset2['data'][tooltipItem['index']]) * 100)
+                  return percent + '% ';
+                }
+            },
+            backgroundColor: '#EFEFEF',
+            titleFontSize: 12,
+            titleFontColor: '#0066ff',
+            bodyFontColor: '#000',
+            bodyFontSize: 10,
+            displayColors: false
+            }
         }
-      }
     });
+
+
+function lineupNames(lineupIDs) {
+    let netsRoster = JSON.parse(localStorage["nets_roster"])
+    let nameArray = []
+    for(var id in lineupIDs) {
+        for(var playerObj in netsRoster) {
+            if(lineupIDs[id] == netsRoster[playerObj]["PLAYER_ID"]) {
+                nameArray.push(netsRoster[playerObj]["PLAYER"])
+            }
+        }
+        // console.log(lineupIDs[id])
+    }
+    return nameArray
+}
 
 
 function createDatasets(lineups, lineupKey) {
     // Sorting the JSON to find the indx of the match
     // Then creating the datasets and colors for the graph to render
+    fgLineupIDs = []
+    ftLineupIDs = []
+    fg3LineupIDs = []
+
     fgAttemptBorderColors = []
     fgAttemptFillColors = []
     fgAttempts = []
@@ -181,27 +248,30 @@ function createDatasets(lineups, lineupKey) {
     for(var lineup in lineups){
         if(lineup == lineupKey) {
             if(lineups[lineup]["FGA"] != 0){
-            fgAttemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            fgLineupIDs.push(lineups[lineup]["GROUP_ID"])
+            fgAttemptFillColors.push("rgba(255, 159, 64, 1)")
             fgAttemptBorderColors.push("rgba(255, 159, 64, 1)")
-            fgMadeFillColors.push("rgba(255, 99, 132, 0.2)")
+            fgMadeFillColors.push("rgba(255, 99, 132, 1)")
             fgMadeBorderColors.push("rgba(255, 99, 132, 1)")
             fgAttempts.push(lineups[lineup]["FGA"])
             fgMade.push(lineups[lineup]["FGM"])
             fgPercent.push(lineups[lineup]["FG_PCT"])
             } 
             if(lineups[lineup]["FTA"] != 0){
-            ftAttemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            ftLineupIDs.push(lineups[lineup]["GROUP_ID"])
+            ftAttemptFillColors.push("rgba(255, 159, 64, 1)")
             ftAttemptBorderColors.push("rgba(255, 159, 64, 1)")
-            ftMadeFillColors.push("rgba(255, 99, 132, 0.2)")
+            ftMadeFillColors.push("rgba(255, 99, 132, 1)")
             ftMadeBorderColors.push("rgba(255, 99, 132, 1)")
             ftAttempts.push(lineups[lineup]["FTA"])
             ftMade.push(lineups[lineup]["FTM"])
             ftPercent.push(lineups[lineup]["FT_PCT"])
             }  
-            if(lineups[lineup]["FT3A"] != 0){   
-            fg3AttemptFillColors.push("rgba(255, 159, 64, 0.2)")
+            if(lineups[lineup]["FT3A"] != 0){  
+            fg3LineupIDs.push(lineups[lineup]["GROUP_ID"]) 
+            fg3AttemptFillColors.push("rgba(255, 159, 64, 1)")
             fg3AttemptBorderColors.push("rgba(255, 159, 64, 1)")
-            fg3MadeFillColors.push("rgba(255, 99, 132, 0.2)")
+            fg3MadeFillColors.push("rgba(255, 99, 132, 1)")
             fg3MadeBorderColors.push("rgba(255, 99, 132, 1)")
             fg3Attempts.push(lineups[lineup]["FG3A"])
             fg3Made.push(lineups[lineup]["FG3M"])
@@ -209,27 +279,30 @@ function createDatasets(lineups, lineupKey) {
             }
         } else {
             if(lineups[lineup]["FGA"] != 0){
-            fgAttemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            fgLineupIDs.push(lineups[lineup]["GROUP_ID"])
+            fgAttemptFillColors.push("rgba(192, 192, 192, 1)")
             fgAttemptBorderColors.push("rgba(192, 192, 192, 1)")
-            fgMadeFillColors.push("rgba(0, 0, 0, 0.2)")
+            fgMadeFillColors.push("rgba(0, 0, 0, 1)")
             fgMadeBorderColors.push("rgba(0, 0, 0, 1)")
             fgAttempts.push(lineups[lineup]["FGA"])
             fgMade.push(lineups[lineup]["FGM"])
             fgPercent.push(lineups[lineup]["FG_PCT"])
             }
             if(lineups[lineup]["FTA"] != 0){
-            ftAttemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            ftLineupIDs.push(lineups[lineup]["GROUP_ID"])
+            ftAttemptFillColors.push("rgba(192, 192, 192, 1)")
             ftAttemptBorderColors.push("rgba(192, 192, 192, 1)")
-            ftMadeFillColors.push("rgba(0, 0, 0, 0.2)")
+            ftMadeFillColors.push("rgba(0, 0, 0, 1)")
             ftMadeBorderColors.push("rgba(0, 0, 0, 1)")
             ftAttempts.push(lineups[lineup]["FTA"])
             ftMade.push(lineups[lineup]["FTM"])
             ftPercent.push(lineups[lineup]["FT_PCT"])
             }
             if(lineups[lineup]["FG3A"] != 0){
-            fg3AttemptFillColors.push("rgba(192, 192, 192, 0.2)")
+            fg3LineupIDs.push(lineups[lineup]["GROUP_ID"])
+            fg3AttemptFillColors.push("rgba(192, 192, 192, 1)")
             fg3AttemptBorderColors.push("rgba(192, 192, 192, 1)")
-            fg3MadeFillColors.push("rgba(0, 0, 0, 0.2)")
+            fg3MadeFillColors.push("rgba(0, 0, 0, 1)")
             fg3MadeBorderColors.push("rgba(0, 0, 0, 1)")
             fg3Attempts.push(lineups[lineup]["FG3A"])
             fg3Made.push(lineups[lineup]["FG3M"])
@@ -242,7 +315,14 @@ function createDatasets(lineups, lineupKey) {
 
 function makeTheFTGraph() {
     removeData(leftChart)
-    leftChart.data.labels = Array.apply(null, { length: ftMade.length })
+    $("#left-ft-graph").addClass("yellowDisabled")
+                       .attr("disabled", "disabled");        
+    $("#left-fg-graph").removeAttr("disabled")
+                       .removeClass("yellowDisabled");
+    $("#left-fg3-graph").removeAttr("disabled")
+                        .removeClass("yellowDisabled");
+
+    leftChart.data.labels = ftLineupIDs
     leftChart.data.datasets[0].label = "FT made"
     leftChart.data.datasets[0].data = ftMade
     leftChart.data.datasets[0].backgroundColor = ftMadeFillColors
@@ -259,7 +339,13 @@ function makeTheFTGraph() {
 
 function makeTheFGGraph() {
     removeData(leftChart)
-    leftChart.data.labels = Array.apply(null, { length: fgMade.length })
+    $("#left-fg-graph").addClass("yellowDisabled")
+                       .attr("disabled", "disabled");        
+    $("#left-ft-graph").removeAttr("disabled")
+                       .removeClass("yellowDisabled");
+    $("#left-fg3-graph").removeAttr("disabled")
+                        .removeClass("yellowDisabled");
+    leftChart.data.labels = fgLineupIDs
     leftChart.data.datasets[0].label = "FG made"
     leftChart.data.datasets[0].data = fgMade
     leftChart.data.datasets[0].backgroundColor = fgMadeFillColors
@@ -277,7 +363,13 @@ function makeTheFGGraph() {
 
 function makeTheFG3Graph() {
     removeData(leftChart)
-    leftChart.data.labels = Array.apply(null, { length: fg3Made.length })
+    $("#left-fg3-graph").addClass("yellowDisabled")
+                        .attr("disabled", "disabled");        
+    $("#left-ft-graph").removeAttr("disabled")
+                       .removeClass("yellowDisabled");
+    $("#left-fg-graph").removeAttr("disabled")
+                       .removeClass("yellowDisabled");
+    leftChart.data.labels = fg3LineupIDs
     leftChart.data.datasets[0].label = "FG3 made"
     leftChart.data.datasets[0].data = fg3Made
     leftChart.data.datasets[0].backgroundColor = fg3MadeFillColors

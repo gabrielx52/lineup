@@ -234,3 +234,19 @@ footer {
     border-top-right-radius: 25%;
     border-top-left-radius: 25%;
 }
+
+
+#myChart-left {
+
+}
+
+button {
+    cursor: pointer;
+}
+
+.yellowDisabled {
+    cursor: default;
+    color: #212529!important;
+    background-color: #9d7707!important;
+    border-color: #805f00!important;
+}

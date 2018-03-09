@@ -46,7 +46,7 @@ $(document).ready(function() {
                 $("#set-roster-r").removeAttr("disabled")
                                   .css({"color": "white"});
                 $("#set-roster-l").removeAttr("disabled")
-                                     .css({"color": "white"});
+                                  .css({"color": "white"});
                 
                 $("#left-tab-gp").text(
                     `${netsStats['GP']}`)
@@ -146,6 +146,7 @@ $(document).ready(function() {
                     `${oppsStats['BLKA'].toFixed(1)}`)
                 $("#right-tab-pf").text(
                     `${oppsStats['PF'].toFixed(1)}`)
+                                       
                 lineupVsTeamStatsAjax(teamID);
             },
             error: function(error) {
