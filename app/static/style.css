@@ -48,6 +48,11 @@ section {
 }
 /*End Yearbook*/
 
+.table-header {
+    color: white;
+    background-color: #0a0a0aab;
+}
+
 /*Team Card*/
 .team-card {
 
@@ -100,6 +105,46 @@ section {
     margin: 1px !important;
     display: inline !important;
 }
+
+
+.vert-card {
+    box-shadow: 2px 2px 2px 0px #d6d6d6;
+    overflow: hidden;
+    height: 12rem;
+    width: 18%;
+    display: inline-block !important;
+    border-top-right-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    margin: 1rem 2px;
+}
+.vert-head {
+    display: inline-block !important;
+    width: 78%;
+    background-color: #80808038;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-position-x: 65%;
+
+}
+
+#new-thing {
+    padding: 0!important;
+}
+
+.vert-name {
+    display: inline-block !important;
+    background: black;
+    height: 100%;
+    width: 22%;
+    float: right;
+    border-left: white solid 2px;
+    color: white;
+    writing-mode: vertical-lr;
+    text-align: right;
+    font-family: 'Anton', sans-serif;
+}
+
 
 #btnGroupDrop1 {
     background-color: #f82c1d;

@@ -61,11 +61,11 @@ function checkForCurrentLineupStats(teamLineup, teamID) {
         createDatasets(allTeamLineups, lineupKey)
         console.log(allTeamLineups[lineupKey])
     } else {
+        createDatasets(allTeamLineups, lineupKey)
         console.log(`No data on selected lineup vs selected team.`)
     }
         
 };
-
 
 
 
@@ -76,7 +76,7 @@ let leftChart = new Chart(ctx, {
     data: {
         labels: [],
         datasets: [{
-            label: '',
+            label: 'here',
             data: [],
             backgroundColor: [],
             borderColor: [],
@@ -100,6 +100,7 @@ let leftChart = new Chart(ctx, {
             }
           }],
           xAxes: [{
+            display: false,
             stacked: true,
             ticks: {
               beginAtZero: true
@@ -143,6 +144,9 @@ let leftChart = new Chart(ctx, {
                     xPadding: null,
                 }
             }]
+        },
+        legend: {
+            
         }
       }
     });
