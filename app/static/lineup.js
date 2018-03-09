@@ -48,19 +48,24 @@ $(document).ready(function() {
         let players = teamLineup["players"]
         let teamID = teamLineup["teamID"]
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
-        let str = '<div class="col-lg-2" id="player_spacer"></div>'
+        let str = `<div class="col-lg-12 col-sm-12 text-center">`
 
         checkForCurrentLineupStats(teamLineup, teamID)
+
+   
 
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
             let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
-            str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
-                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto lineup-pic" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
-                            `<h4 style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="player_name">${playerName}</h4>` +
-                        '</div>'
+            str = str + `<div class="vert-card">` +
+                            `<div style="background-image: url('./static/headshots/${teamID}/${playerID}.png')" data-player-id="${playerID}" data-team-id="${teamID}" class="vert-head"></div>` +
+                            `<div style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="vert-name">` +
+                                `${playerName}&thinsp;` +
+                            `</div>` +
+                        `</div>`
         };
+        str = str + `</div>`
         $("#left-team-dash").html(str);
 
         $("#left-lineup-collapse").collapse("hide");
@@ -92,7 +97,6 @@ $(document).ready(function() {
             let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
             let playerID = oppRoster[playerObj]["PLAYER_ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
-            // console.log(playerName)
             str = str + '<div class="col-lg-4 col-md-6 mb-4">' +
                             '<div class="card yearbook-card">' +
                                 `<a href="#"><img onerror="imgError(this);" class="card-img-top" src="./../static/headshots/${teamID}/${playerID}.png" alt=""></a>` +
@@ -120,17 +124,20 @@ $(document).ready(function() {
         let players = oppLineup["players"]
         let teamID = oppLineup["teamID"]
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
-        let str = '<div class="col-lg-2" id="player_spacer"></div>'
+        let str = `<div class="col-lg-12 col-sm-12 text-center">`
 
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
             let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
-            str = str + '<div class="col-lg-4 col-sm-6 text-center mb-4">' +
-                            `<img onerror="imgError(this);" data-player-id="${playerID}" data-team-id="${teamID}" class="img-fluid d-block mx-auto lineup-pic" src="./../static/headshots/${teamID}/${playerID}.png" alt="">` +
-                            `<h4 style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="player_name">${playerName}</h4>` +
-                        '</div>'
+            str = str + `<div class="vert-card">` +
+                            `<div style="background-image: url('./static/headshots/${teamID}/${playerID}.png')" data-player-id="${playerID}" data-team-id="${teamID}" class="vert-head"></div>` +
+                            `<div style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="vert-name">` +
+                                `${playerName}&thinsp;` +
+                            `</div>` +
+                        `</div>`
         };
+        str = str + `</div>`
         $("#right-team-dash").html(str);
 
         $("#right-lineup-collapse").collapse("hide");
