@@ -1,5 +1,7 @@
 "use strict";
 
+const baseUrl = "https://serene-earth-30229.herokuapp.com"
+
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
     $(".dropdown-toggle").click(function() {
@@ -19,8 +21,8 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: `/getTeamVsTeamData`,
-            dataType: 'jsonp',
+            url: `${baseUrl}/getTeamVsTeamData`,
+            dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
             success: function(response) {
                 let netsStats = response['nets_stats']
