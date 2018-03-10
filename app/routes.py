@@ -5,6 +5,8 @@ from app import app
 
 from flask import render_template, request
 
+from flask_cors import cross_origin
+
 from .api_script import (get_team_lineup_vs_specific_team_stats,
                          get_team_roster,
                          get_team_vs_team_stats,)
@@ -20,6 +22,7 @@ def index():
 
 
 @app.route('/getTeamVsTeamData', methods=['POST', 'GET'])
+@cross_origin()
 def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
     nets_id = "1610612751"
@@ -34,6 +37,7 @@ def get_team_vs_team_data():
 
 
 @app.route('/getLineupVsTeamData', methods=['POST', 'GET'])
+@cross_origin()
 def get_lineup_vs_team_data():
     """Route for jquery lineup vs team data request."""
     nets_id = "1610612751"
