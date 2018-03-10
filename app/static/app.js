@@ -1,5 +1,6 @@
 "use strict";
 
+const baseUrl = 'http://localhost:5000'
 
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
@@ -20,7 +21,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/getTeamVsTeamData",
+            url: `${baseUrl}/getTeamVsTeamData`,
             dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
             success: function(response) {
