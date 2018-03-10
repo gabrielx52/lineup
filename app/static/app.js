@@ -13,6 +13,7 @@ $(document).ready(function() {
         let teamName = $(this).text()
         let teamID = $(this).data("team-id")
         console.log($SCRIPT_ROOT + '*****')
+        console.log('*****')
         $("#team2-img").attr({"style": "visibility: hidden"});
         $("#loader").addClass("loader");
         $("#btnGroupDrop1").removeClass("appleBottom");
