@@ -23,7 +23,7 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: `${baseUrl}/getTeamVsTeamData`,
-            dataType: 'json',
+            dataType: 'jsonp',
             data: {"teamID": JSON.stringify(teamID)},
             // xhrFields: {
             //     withCredentials: true
@@ -60,7 +60,7 @@ $(document).ready(function() {
                 tableMaker("right", oppsStats)
 
 
-                lineupVsTeamStatsAjax(teamID);
+                // lineupVsTeamStatsAjax(teamID);
             },
             error: function(error) {
                 console.log(error);
