@@ -19,7 +19,7 @@ def index():
     return render_template('index.html', title='Home Page', teams=TEAMS)
 
 
-@app.route('/getTeamVsTeamData', methods=['POST'])
+@app.route('/getTeamVsTeamData', methods=['POST', 'GET'])
 def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
     nets_id = "1610612751"
@@ -33,7 +33,7 @@ def get_team_vs_team_data():
                        'team_colors': teamColors})
 
 
-@app.route('/getLineupVsTeamData', methods=['POST'])
+@app.route('/getLineupVsTeamData', methods=['POST', 'GET'])
 def get_lineup_vs_team_data():
     """Route for jquery lineup vs team data request."""
     nets_id = "1610612751"
