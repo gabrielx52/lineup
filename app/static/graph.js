@@ -3,20 +3,17 @@ $(document).ready(function(){
         $("#left-collapse-graph").collapse("toggle");
         $("#left-collapse-stats").collapse("toggle");
 
-        $("#left-graph-toggle").addClass("yellowDisabled")
-                               .attr("disabled", "disabled");        
+        $("#left-graph-toggle").attr("disabled", "disabled");        
         $("#left-stats-toggle").removeAttr("disabled")
-                               .removeClass("yellowDisabled");
 
     });
     $("#left-stats-toggle").click(function() {
         $("#left-collapse-stats").collapse("toggle");
         $("#left-collapse-graph").collapse("toggle");
 
-        $("#left-stats-toggle").addClass("yellowDisabled")
-                               .attr("disabled", "disabled");        
+        $("#left-stats-toggle").attr("disabled", "disabled");        
         $("#left-graph-toggle").removeAttr("disabled")
-                               .removeClass("yellowDisabled");
+
     });
 });
 
@@ -209,7 +206,6 @@ function lineupNames(lineupIDs) {
                 nameArray.push(netsRoster[playerObj]["PLAYER"])
             }
         }
-        // console.log(lineupIDs[id])
     }
     return nameArray
 }
@@ -315,12 +311,9 @@ function createDatasets(lineups, lineupKey) {
 
 function makeTheFTGraph() {
     removeData(leftChart)
-    $("#left-ft-graph").addClass("yellowDisabled")
-                       .attr("disabled", "disabled");        
+    $("#left-ft-graph").attr("disabled", "disabled");        
     $("#left-fg-graph").removeAttr("disabled")
-                       .removeClass("yellowDisabled");
     $("#left-fg3-graph").removeAttr("disabled")
-                        .removeClass("yellowDisabled");
 
     leftChart.data.labels = ftLineupIDs
     leftChart.data.datasets[0].label = "FT made"
@@ -339,12 +332,10 @@ function makeTheFTGraph() {
 
 function makeTheFGGraph() {
     removeData(leftChart)
-    $("#left-fg-graph").addClass("yellowDisabled")
-                       .attr("disabled", "disabled");        
+    $("#left-fg-graph").attr("disabled", "disabled");        
     $("#left-ft-graph").removeAttr("disabled")
-                       .removeClass("yellowDisabled");
     $("#left-fg3-graph").removeAttr("disabled")
-                        .removeClass("yellowDisabled");
+
     leftChart.data.labels = fgLineupIDs
     leftChart.data.datasets[0].label = "FG made"
     leftChart.data.datasets[0].data = fgMade
@@ -363,12 +354,10 @@ function makeTheFGGraph() {
 
 function makeTheFG3Graph() {
     removeData(leftChart)
-    $("#left-fg3-graph").addClass("yellowDisabled")
-                        .attr("disabled", "disabled");        
+    $("#left-fg3-graph").attr("disabled", "disabled");        
     $("#left-ft-graph").removeAttr("disabled")
-                       .removeClass("yellowDisabled");
     $("#left-fg-graph").removeAttr("disabled")
-                       .removeClass("yellowDisabled");
+
     leftChart.data.labels = fg3LineupIDs
     leftChart.data.datasets[0].label = "FG3 made"
     leftChart.data.datasets[0].data = fg3Made
