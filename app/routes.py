@@ -31,7 +31,6 @@ def get_team_vs_team_data():
     nets_roster = get_team_roster(nets_id)
     nets_stats = get_team_vs_team_stats(nets_id, team_id)
     opp_stats = get_team_vs_team_stats(team_id, nets_id)
-
     return json.dumps({'status': 'OK', 'nets_stats': nets_stats, 'opp_stats': opp_stats,
                        'opp_roster': opp_roster, 'nets_roster': nets_roster,
                        'team_colors': teamColors})

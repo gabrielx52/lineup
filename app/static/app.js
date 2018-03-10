@@ -25,11 +25,11 @@ $(document).ready(function() {
             url: `${baseUrl}/getTeamVsTeamData`,
             dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
-            xhrFields: {
-                withCredentials: true
-                },
-            crossDomain: true,
-            contentType: 'application/json; charset=utf-8',
+            // xhrFields: {
+            //     withCredentials: true
+            //     },
+            // crossDomain: true,
+            // contentType: 'application/json; charset=utf-8',
             success: function(response) {
                 let netsStats = response['nets_stats']
                 let netsRoster = response['nets_roster']
