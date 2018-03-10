@@ -7,10 +7,10 @@ from flask import render_template, request
 
 from flask_cors import cross_origin
 
-from .api_script import (get_team_lineup_vs_specific_team_stats,
-                         get_team_roster,
-                         get_team_vs_team_stats,
-                         get_team_rooster)
+from .api_script import (get_pickled_lineup_stats,
+                         get_pickled_rosters,
+                         get_pickled_tvt_stats,
+                         )
 
 from .team_dict import TEAMS, teamColors
 
@@ -27,13 +27,10 @@ def index():
 def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
     nets_id = "1610612751"
-    # team_id = request.form['teamID']
-    nets_roster = get_team_rooster('BKN')
-    # nets_roster = get_team_roster(nets_id)
-    return json.dumps({'status': 'OK', 'nets_id': nets_id, 'nets_roster': nets_roster})
-    opp_roster = get_team_roster(team_id)
-    nets_stats = get_team_vs_team_stats(nets_id, team_id)
-    opp_stats = get_team_vs_team_stats(team_id, nets_id)
+    team_id = request.form['teamID']
+    nets_roster = get_pickled_rosters(nets_id)
+    opp_roster = get_pickled_rosters(team_id)
+    nets_stats, opp_stats = get_pickled_tvt_stats(team_id)
     return json.dumps({'status': 'OK', 'nets_stats': nets_stats, 'opp_stats': opp_stats,
                        'opp_roster': opp_roster, 'nets_roster': nets_roster,
                        'team_colors': teamColors})
@@ -45,7 +42,7 @@ def get_lineup_vs_team_data():
     """Route for jquery lineup vs team data request."""
     nets_id = "1610612751"
     team_id = request.form['teamID']
-    lineups = get_team_lineup_vs_specific_team_stats(nets_id, team_id)
+    lineups = get_pickled_lineup_stats(team_id)
     return json.dumps({'status': 'OK', 'nets_id': nets_id, "opp_id": team_id, "lineups": lineups})
 
 

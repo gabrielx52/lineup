@@ -1,7 +1,12 @@
 """Script using nba_py API wrapper."""
+import os
+import pickle
+
 from nba_py import player, team
 
 from .team_dict import TEAMS, tvt_keys
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def get_player_info(player_id):
@@ -87,3 +92,74 @@ def get_team_vs_team_stats(team_id, opponent_id=0):
         return dict(zip(tvt_keys, match[0]))
     else:
         return teams_data
+
+
+def make_empty_pickle_file(file_name):
+    """Make empty pickle file."""
+    d = {}
+    with open("./pickles/{}.pkl".format(file_name), "wb") as fileObj:
+        pickle.dump(d, fileObj)
+
+
+def pickle_rosters(team_id, roster):
+    """Pickle team rosters."""
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/roster.pkl", "rb") as fileObj:
+        rosters = pickle.load(fileObj)
+        if team_id not in rosters:
+            rosters[team_id] = roster
+        if len(rosters) == 30:
+            print('30 team rosters pickled')
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/roster.pkl", "wb") as fileObj:
+        pickle.dump(rosters, fileObj)
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/roster.pkl", "rb") as fileObj:
+        rosts = pickle.load(fileObj)
+        print(len(rosts))
+
+
+def get_pickled_rosters(team_id):
+    """Get team rosters from the pickle."""
+    with open(os.path.join(BASE_DIR, "app/pickles/roster.pkl"), "rb") as fileObj:
+        rosters = pickle.load(fileObj)
+        return rosters[team_id]
+
+
+def pickle_tvt_stats(opp_id, team_stats, opp_stats):
+    """Pickle team vs team stats."""
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/tvt_stats.pkl", "rb") as fileObj:
+        tvt_stats = pickle.load(fileObj)
+        if opp_id not in tvt_stats:
+            tvt_stats[opp_id] = [team_stats, opp_stats]
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/tvt_stats.pkl", "wb") as fileObj:
+        pickle.dump(tvt_stats, fileObj)
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/tvt_stats.pkl", "rb") as fileObj:
+        rosts = pickle.load(fileObj)
+        print(rosts)
+        print(len(rosts))
+
+
+def get_pickled_tvt_stats(team_id):
+    """Get team vs team stats from the pickle."""
+    with open(os.path.join(BASE_DIR, "app/pickles/tvt_stats.pkl"), "rb") as fileObj:
+        tvt_stats = pickle.load(fileObj)
+        return tvt_stats[team_id]
+
+
+def pickle_lineup_stats(opp_id, lineups):
+    """Pickle team vs team stats."""
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/lineup_stats.pkl", "rb") as fileObj:
+        lineup_stats = pickle.load(fileObj)
+        if opp_id not in lineup_stats:
+            lineup_stats[opp_id] = lineups
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/lineup_stats.pkl", "wb") as fileObj:
+        pickle.dump(lineup_stats, fileObj)
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/lineup_stats.pkl", "rb") as fileObj:
+        rosts = pickle.load(fileObj)
+        print(rosts)
+        print(len(rosts))
+
+
+def get_pickled_lineup_stats(team_id):
+    """Get lineup vs team stats from the pickle."""
+    with open(os.path.join(BASE_DIR, 'app/pickles/lineup_stats.pkl'), "rb") as fileObj:
+        lineup_stats = pickle.load(fileObj)
+        return lineup_stats[team_id]

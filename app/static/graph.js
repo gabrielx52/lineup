@@ -51,7 +51,7 @@ function lineupVsTeamStatsAjax(teamID) {
 // Get team vs team lineup data, called after team stats load.
     $.ajax({
         type: "POST",
-        url: `https://serene-earth-30229.herokuapp.com/getLineupVsTeamData`,
+        url: `/getLineupVsTeamData`,
         dataType: 'json',
         data: {"teamID": JSON.stringify(teamID)},
         success: function(response) {
