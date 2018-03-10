@@ -9,6 +9,7 @@ coverage==4.5.1
 decorator==4.2.1
 docopt==0.6.2
 Flask==0.12.2
+gunicorn==19.7.1
 idna==2.6
 ipython==6.2.1
 ipython-genutils==0.2.0
