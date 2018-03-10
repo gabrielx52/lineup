@@ -22,7 +22,7 @@ def index():
 
 
 @app.route('/getTeamVsTeamData', methods=['POST', 'GET'])
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
     return json.dumps({'status': 'OK', 'nets_stats': [], 'opp_stats': []})

@@ -24,6 +24,11 @@ $(document).ready(function() {
             url: `https://serene-earth-30229.herokuapp.com/getTeamVsTeamData`,
             dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
+            xhrFields: {
+                withCredentials: true
+                },
+            crossDomain: true,
+            contentType: 'application/json; charset=utf-8',
             success: function(response) {
                 let netsStats = response['nets_stats']
                 let netsRoster = response['nets_roster']
