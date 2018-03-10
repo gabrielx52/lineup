@@ -3,7 +3,6 @@
 const baseUrl = "https://serene-earth-30229.herokuapp.com"
 
 $(document).ready(function() {
-    console.log($SCRIPT_ROOT)
     $(".dropdown-toggle").dropdown();
     $(".dropdown-toggle").click(function() {
         $("#right-lineup-collapse").collapse("hide");
@@ -13,6 +12,7 @@ $(document).ready(function() {
         let teamAbbr = $(this).data("team-abbr")
         let teamName = $(this).text()
         let teamID = $(this).data("team-id")
+        console.log($SCRIPT_ROOT + '*****')
         $("#team2-img").attr({"style": "visibility: hidden"});
         $("#loader").addClass("loader");
         $("#btnGroupDrop1").removeClass("appleBottom");
