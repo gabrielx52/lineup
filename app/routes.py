@@ -26,7 +26,9 @@ def index():
 def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
     nets_id = "1610612751"
-    team_id = request.form['teamID']
+    # team_id = request.form['teamID']
+
+    return json.dumps({'status': 'OK'})
     opp_roster = get_team_roster(team_id)
     nets_roster = get_team_roster(nets_id)
     nets_stats = get_team_vs_team_stats(nets_id, team_id)
