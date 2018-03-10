@@ -1,12 +1,8 @@
 """Script using nba_py API wrapper."""
-import requests
-
 from nba_py import player, team
 
 from .team_dict import TEAMS, tvt_keys
 
-
-current_season = '2017-18'
 
 def get_player_info(player_id):
     """Return player info."""
@@ -91,16 +87,3 @@ def get_team_vs_team_stats(team_id, opponent_id=0):
         return dict(zip(tvt_keys, match[0]))
     else:
         return teams_data
-
-
-def get_team_rooster(team_abbrv, season=current_season):
-    """Get teams current roster."""
-    url = 'http://stats.nba.com/stats/{}/'
-    query = '?LeagueID=00&Season={}&TeamID={}'
-    endpoint = 'commonteamroster'
-    team_id = TEAMS[team_abbrv]['id']
-    full_url = url.format(endpoint) + query.format(season, team_id)
-    r = requests.get(full_url, headers={'User-agent': 'Ryan DiCommo'})
-    roster_raw = r.json()
-    roster = roster_raw['resultSets'][0]['rowSet']
-    return roster
