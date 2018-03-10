@@ -13,6 +13,7 @@ $(document).ready(function() {
         let teamID = $(this).data("team-id")
         $("#team2-img").attr({"style": "visibility: hidden"});
         $("#loader").addClass("loader");
+        $("#btnGroupDrop1").removeClass("appleBottom");
 
         $("#left-stats-table-header").text(
             `2017-18 stats vs. ${teamName}`);
@@ -46,106 +47,12 @@ $(document).ready(function() {
                 $("#set-roster-r").removeAttr("disabled")
                                   .css({"color": "white"});
                 $("#set-roster-l").removeAttr("disabled")
-                                     .css({"color": "white"});
-                
-                $("#left-tab-gp").text(
-                    `${netsStats['GP']}`)
-                $("#left-tab-w").text(
-                    `${netsStats['W']}`)
-                $("#left-tab-l").text(
-                    `${netsStats['L']}`)
-                $("#left-tab-winpct").text(
-                    `${netsStats['W_PCT'].toFixed(3)}`)
-                $("#left-tab-min").text(
-                    `${netsStats['MIN'].toFixed(1)}`)
-                $("#left-tab-pts").text(
-                    `${netsStats['PTS'].toFixed(1)}`)
-                $("#left-tab-fgm").text(
-                    `${netsStats['FGM'].toFixed(1)}`)
-                $("#left-tab-fga").text(
-                    `${netsStats['FGA'].toFixed(1)}`)
-                $("#left-tab-fgpct").text(
-                    `${(netsStats['FG_PCT'] * 100).toFixed(1)}`)
-                $("#left-tab-3pm").text(
-                    `${netsStats['FG3M'].toFixed(1)}`)
-                $("#left-tab-3pa").text(
-                    `${netsStats['FG3A'].toFixed(1)}`)
-                $("#left-tab-3ppct").text(
-                    `${(netsStats['FG3_PCT'] * 100).toFixed(1)}`)
-                $("#left-tab-ftm").text(
-                    `${netsStats['FTM'].toFixed(1)}`)
-                $("#left-tab-fta").text(
-                    `${netsStats['FTA'].toFixed(1)}`)
-                $("#left-tab-ftpct").text(
-                    `${(netsStats['FT_PCT'] * 100).toFixed(1)}`)
-                $("#left-tab-oreb").text(
-                    `${netsStats['OREB'].toFixed(1)}`)
-                $("#left-tab-dreb").text(
-                    `${netsStats['DREB'].toFixed(1)}`)
-                $("#left-tab-reb").text(
-                    `${netsStats['REB'].toFixed(1)}`)
-                $("#left-tab-ast").text(
-                    `${netsStats['AST'].toFixed(1)}`)
-                $("#left-tab-tov").text(
-                    `${netsStats['TOV'].toFixed(1)}`)
-                $("#left-tab-stl").text(
-                    `${netsStats['STL'].toFixed(1)}`)
-                $("#left-tab-blk").text(
-                    `${netsStats['BLK'].toFixed(1)}`)
-                $("#left-tab-blka").text(
-                    `${netsStats['BLKA'].toFixed(1)}`)
-                $("#left-tab-pf").text(
-                    `${netsStats['PF'].toFixed(1)}`)
+                                  .css({"color": "white"});
+
+                tableMaker("left", netsStats)
+                tableMaker("right", oppsStats)
 
 
-                $("#right-tab-gp").text(
-                    `${oppsStats['GP']}`)
-                $("#right-tab-w").text(
-                    `${oppsStats['W']}`)
-                $("#right-tab-l").text(
-                    `${oppsStats['L']}`)
-                $("#right-tab-winpct").text(
-                    `${oppsStats['W_PCT'].toFixed(3)}`)
-                $("#right-tab-min").text(
-                    `${oppsStats['MIN'].toFixed(1)}`)
-                $("#right-tab-pts").text(
-                    `${oppsStats['PTS'].toFixed(1)}`)
-                $("#right-tab-fgm").text(
-                    `${oppsStats['FGM'].toFixed(1)}`)
-                $("#right-tab-fga").text(
-                    `${oppsStats['FGA'].toFixed(1)}`)
-                $("#right-tab-fgpct").text(
-                    `${(oppsStats['FG_PCT'] * 100).toFixed(1)}`)
-                $("#right-tab-3pm").text(
-                    `${oppsStats['FG3M'].toFixed(1)}`)
-                $("#right-tab-3pa").text(
-                    `${oppsStats['FG3A'].toFixed(1)}`)
-                $("#right-tab-3ppct").text(
-                    `${(oppsStats['FG3_PCT'] * 100).toFixed(1)}`)
-                $("#right-tab-ftm").text(
-                    `${oppsStats['FTM'].toFixed(1)}`)
-                $("#right-tab-fta").text(
-                    `${oppsStats['FTA'].toFixed(1)}`)
-                $("#right-tab-ftpct").text(
-                    `${(oppsStats['FT_PCT'] * 100).toFixed(1)}`)
-                $("#right-tab-oreb").text(
-                    `${oppsStats['OREB'].toFixed(1)}`)
-                $("#right-tab-dreb").text(
-                    `${oppsStats['DREB'].toFixed(1)}`)
-                $("#right-tab-reb").text(
-                    `${oppsStats['REB'].toFixed(1)}`)
-                $("#right-tab-ast").text(
-                    `${oppsStats['AST'].toFixed(1)}`)
-                $("#right-tab-tov").text(
-                    `${oppsStats['TOV'].toFixed(1)}`)
-                $("#right-tab-stl").text(
-                    `${oppsStats['STL'].toFixed(1)}`)
-                $("#right-tab-blk").text(
-                    `${oppsStats['BLK'].toFixed(1)}`)
-                $("#right-tab-blka").text(
-                    `${oppsStats['BLKA'].toFixed(1)}`)
-                $("#right-tab-pf").text(
-                    `${oppsStats['PF'].toFixed(1)}`)
                 lineupVsTeamStatsAjax(teamID);
             },
             error: function(error) {
@@ -156,3 +63,56 @@ $(document).ready(function() {
     });
 
 });
+
+
+
+function tableMaker(side, stats) {
+                $(`#${side}-tab-gp`).text(
+                    `${stats['GP']}`)
+                $(`#${side}-tab-w`).text(
+                    `${stats['W']}`)
+                $(`#${side}-tab-l`).text(
+                    `${stats['L']}`)
+                $(`#${side}-tab-winpct`).text(
+                    `${stats['W_PCT'].toFixed(3)}`)
+                $(`#${side}-tab-min`).text(
+                    `${stats['MIN'].toFixed(1)}`)
+                $(`#${side}-tab-pts`).text(
+                    `${stats['PTS'].toFixed(1)}`)
+                $(`#${side}-tab-fgm`).text(
+                    `${stats['FGM'].toFixed(1)}`)
+                $(`#${side}-tab-fga`).text(
+                    `${stats['FGA'].toFixed(1)}`)
+                $(`#${side}-tab-fgpct`).text(
+                    `${(stats['FG_PCT'] * 100).toFixed(1)}`)
+                $(`#${side}-tab-3pm`).text(
+                    `${stats['FG3M'].toFixed(1)}`)
+                $(`#${side}-tab-3pa`).text(
+                    `${stats['FG3A'].toFixed(1)}`)
+                $(`#${side}-tab-3ppct`).text(
+                    `${(stats['FG3_PCT'] * 100).toFixed(1)}`)
+                $(`#${side}-tab-ftm`).text(
+                    `${stats['FTM'].toFixed(1)}`)
+                $(`#${side}-tab-fta`).text(
+                    `${stats['FTA'].toFixed(1)}`)
+                $(`#${side}-tab-ftpct`).text(
+                    `${(stats['FT_PCT'] * 100).toFixed(1)}`)
+                $(`#${side}-tab-oreb`).text(
+                    `${stats['OREB'].toFixed(1)}`)
+                $(`#${side}-tab-dreb`).text(
+                    `${stats['DREB'].toFixed(1)}`)
+                $(`#${side}-tab-reb`).text(
+                    `${stats['REB'].toFixed(1)}`)
+                $(`#${side}-tab-ast`).text(
+                    `${stats['AST'].toFixed(1)}`)
+                $(`#${side}-tab-tov`).text(
+                    `${stats['TOV'].toFixed(1)}`)
+                $(`#${side}-tab-stl`).text(
+                    `${stats['STL'].toFixed(1)}`)
+                $(`#${side}-tab-blk`).text(
+                    `${stats['BLK'].toFixed(1)}`)
+                $(`#${side}-tab-blka`).text(
+                    `${stats['BLKA'].toFixed(1)}`)
+                $(`#${side}-tab-pf`).text(
+                    `${stats['PF'].toFixed(1)}`)
+}

@@ -42,8 +42,8 @@
                             <img data-team-id="1610612751" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
                             <button type="button" class="btn btn-dark" id="set-roster-l" disabled>Choose Lineup</button>
 
-                            <button type="button" id="left-stats-toggle" class="btn-sm btn-warning" >Stats</button>
-                            <button type="button" id="left-graph-toggle" class="btn-sm btn-warning" >Graph</button>
+                            <button type="button" id="left-stats-toggle" class="btn-sm btn-warning" disabled>Stats</button>
+                            <button onclick="makeTheFGGraph()" type="button" id="left-graph-toggle" class="btn-sm btn-warning" disabled>Graph</button>
 
 
                         </div>
@@ -56,8 +56,9 @@
                                     </div>
                                 </form>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button id='left-lineup-confirm' type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
-                                    <button id='left-lineup-collapse-close' type="button" class="btn btn-outline-dark">Cancel</button>
+                                    <button id='left-lineup-confirm' type="button" class="btn btn-danger" disabled>Confirm Lineup</button>
+                                    <button id='left-lineup-collapse-close' type="button" class="btn btn-outline-dark flatLeft">Cancel</button>
+                                    <span>Select 5 player lineup</span>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button onclick="makeTheFGGraph()" type="button" id="left-fg-graph" class="btn-sm btn-warning" >FG</button>
                                     <button onclick="makeTheFG3Graph()" type="button" id="left-fg3-graph" class="btn-sm btn-warning" >3P</button>
-                                    <button onclick="makeTheFTGraph()" type="button" id="left-fgt-graph" class="btn-sm btn-warning" >FT</button>
+                                    <button onclick="makeTheFTGraph()" type="button" id="left-ft-graph" class="btn-sm btn-warning" >FT</button>
                                 </div>
 
                             <canvas id="myChart-left" width="400" height="400"></canvas>
@@ -175,7 +176,7 @@
                             <img id="team2-img" class="team-logo away team-img" type="image/svg+xml" src="" alt="" title="" style="visibility: hidden;">
                             <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
                                 <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Team</button>
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle appleBottom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Team</button>
                                     <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
                                     {% for team in teams %}
                                         {% if team != 'BKN' %}
@@ -195,8 +196,9 @@
                                     <div class="row" id="right-lineup-yearbook"></div>
                                 </form>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button form="right-yearbook-form" id="right-lineup-confirm" type="button" class="btn btn-dark" disabled="">Confirm Lineup</button>
-                                    <button id="right-lineup-collapse-close" type="button" class="btn btn-outline-dark">Cancel</button>
+                                    <button form="right-yearbook-form" id="right-lineup-confirm" type="button" class="btn btn-danger" disabled>Confirm Lineup</button>
+                                    <button id="right-lineup-collapse-close" type="button" class="btn btn-outline-dark flatLeft">Cancel</button>
+                                    <span>Select 5 player lineup</span>
                                 </div>
                             </div>
                         </div>
@@ -321,24 +323,3 @@
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
 </html>
-
-
-
-
-
-
-
-<!-- Left side drop down -->
-<!--                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                      <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Select Team
-                        </button>
-                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-                        {% for team in teams %}
-                            <a class="dropdown-item" href="#">{{ teams[team].city }} {{ teams[team].name }}</a>
-                        {% endfor %}
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-secondary" id='set-roster-1' disabled>Set Roster</button>
-                    </div> -->

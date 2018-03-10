@@ -4,10 +4,11 @@ $(document).ready(function() {
     $("#set-roster-l").click(function() {
         let netsRoster = JSON.parse(localStorage["nets_roster"])
         let str = ""
-
-        $("#left-lineup-confirm").attr("disabled", true)
-                                  .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
         
+        $("#set-roster-l").attr("disabled", "disabled")
+        $("#left-lineup-confirm").attr("disabled", "disabled")
+        $("#left-lineup-collapse-close").addClass("flatLeft")
+    
 
         // Render left side yearbook when choose lineup is selected.
         $("#left-lineup-collapse").collapse("show");
@@ -49,7 +50,8 @@ $(document).ready(function() {
         let teamID = teamLineup["teamID"]
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
         let str = `<div class="col-lg-12 col-sm-12 text-center">`
-
+        $("#set-roster-l").removeAttr("disabled")
+        
         checkForCurrentLineupStats(teamLineup, teamID)
 
    
@@ -67,6 +69,7 @@ $(document).ready(function() {
         };
         str = str + `</div>`
         $("#left-team-dash").html(str);
+        $("#left-graph-toggle").removeAttr("disabled")
 
         $("#left-lineup-collapse").collapse("hide");
     });
@@ -75,6 +78,8 @@ $(document).ready(function() {
     // Close left side lineup dropdown with cancel button.
     $("#left-lineup-collapse-close").click(function(){
         $("#left-lineup-collapse").collapse("hide");
+        $("#set-roster-l").removeAttr("disabled")
+
     });
 
 
@@ -86,8 +91,11 @@ $(document).ready(function() {
         let oppRoster = JSON.parse(localStorage["opp_roster"])
         let str = ""
         
-        $("#right-lineup-confirm").attr("disabled", true)
-                                  .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
+        $("#set-roster-r").attr("disabled", "disabled")
+        $("#btnGroupDrop1").addClass("appleBottom")
+        $("#right-lineup-confirm").attr("disabled", "disabled")
+        $("#right-lineup-collapse-close").addClass("flatLeft")
+
         
         // Render right side yearbook when choose lineup is selected.
         $("#right-lineup-collapse").collapse("show");
@@ -125,7 +133,9 @@ $(document).ready(function() {
         let teamID = oppLineup["teamID"]
         let teamColors = JSON.parse(localStorage["team_colors"])[teamID]
         let str = `<div class="col-lg-12 col-sm-12 text-center">`
-
+        $("#set-roster-r").removeAttr("disabled")
+        $("#btnGroupDrop1").removeClass("appleBottom")
+        
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
             let playerID = players[playerObj]["ID"]
@@ -146,6 +156,10 @@ $(document).ready(function() {
     // Close right side lineup dropdown with cancel button.
     $("#right-lineup-collapse-close").click(function(){
         $("#right-lineup-collapse").collapse("hide");
+        $("#set-roster-r").removeAttr("disabled")
+        $("#btnGroupDrop1").removeClass("appleBottom")
+
+
     });
 });
 
@@ -199,17 +213,16 @@ function checkedBoxes(side) {
             // Enable checkboxes if less than five are checked.
             if($(`input.${side}-yearbook-input:checked`).length != 5) {
                 $(`input.${side}-yearbook-input:not(:checked)`).attr("disabled", false);
-                $(`#${side}-lineup-confirm`).attr("disabled", true)
-                                          .css({"color": "transparent", "text-shadow": "0 0 5px rgba(197, 193, 193, 0.5)"});
-
+                $(`#${side}-lineup-confirm`).attr("disabled", "disabled")
             };
             if($(`input.${side}-yearbook-input:checked`).length == 5) {
 
                 // Enable confirm lineup button if five boxes checked.
                 $(`#${side}-lineup-confirm`).removeAttr("disabled")
-                                          .css({"color": "white"});
+
                 // Disable checkboxes if more than five are checked. 
-                $(`input.${side}-yearbook-input:not(:checked)`).attr("disabled", true);
+                $(`input.${side}-yearbook-input:not(:checked)`).attr("disabled", "disabled");
+                $(`#${side}-lineup-collapse-close`).removeClass("flatLeft");
 
                 let checkedFive = $(`input.${side}-yearbook-input:checked`)
                 let lineupObj = teamLineupObjectifier(checkedFive)

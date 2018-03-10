@@ -20,7 +20,6 @@ section {
 .team-card .btn-sm {
     margin: 0 0.2rem;
     padding: 0 0.2rem;
-    /*background-color: pink;*/
 }
 #left-lineup-yearbook, #right-lineup-yearbook {
     max-height: 32%;
@@ -151,9 +150,10 @@ section {
     border-color: #f82c1d;
 }
 
-#set-roster-l, #set-roster-r, #left-lineup-confirm, #right-lineup-confirm {
-   color: transparent;
-   text-shadow: 0 0 5px rgba(197, 193, 193, 0.5);
+#left-lineup-collapse-close, #right-lineup-collapse-close {
+    border-top-right-radius: .25rem!important;
+    border-bottom-right-radius: .25rem!important;
+
 }
 /*End Team Card*/
 
@@ -233,4 +233,53 @@ footer {
     background: linear-gradient( rgba(0, 0, 0, 0), rgba(80, 80, 80, 0.45), rgba(0, 0, 0, 0));
     border-top-right-radius: 25%;
     border-top-left-radius: 25%;
+}
+
+
+#myChart-left {
+
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn-warning:disabled {
+    cursor: default;
+    color: #212529!important;
+    background-color: #9d7707!important;
+    border-color: #805f00!important;
+}
+
+
+.btn-dark:disabled {
+    cursor: default!important;
+    color: transparent!important;
+    background-color: transparent!important;
+    border-color: transparent!important;
+}
+
+
+.btn-danger:disabled {
+    cursor: default!important;
+    color: transparent!important;
+    background-color: transparent!important;
+    border-color: transparent!important;
+}
+
+
+.appleBottom {
+    border-bottom-right-radius: .25rem!important;
+    border-bottom-left-radius: .25rem!important;
+}
+
+.flatLeft {
+    border-top-left-radius: .25rem!important;
+    border-bottom-left-radius: .25rem!important;
+}
+
+.btn-group > span {
+    text-transform: uppercase;
+    margin: auto;
+    font-size: .8rem;
 }
