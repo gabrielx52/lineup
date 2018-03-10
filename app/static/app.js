@@ -21,53 +21,53 @@ $(document).ready(function() {
         $("#left-stats-table-header").text(
             `2017-18 stats vs. ${teamName}`);
 
-        $.ajax({
-            type: "POST",
-            url: $SCRIPT_ROOT + `/getTeamVsTeamData`,
-            dataType: 'json',
-            data: {"teamID": JSON.stringify(teamID)},
-            xhrFields: {
-                withCredentials: true
-                },
-            crossDomain: true,
-            contentType: 'application/json; charset=utf-8',
-            success: function(response) {
-                let netsStats = response['nets_stats']
-                let netsRoster = response['nets_roster']
-                let oppsStats = response['opp_stats']
-                let oppRoster = response['opp_roster']
-                let teamColors = response['team_colors']
+        // $.ajax({
+        //     type: "POST",
+        //     url: $SCRIPT_ROOT + `/getTeamVsTeamData`,
+        //     dataType: 'json',
+        //     data: {"teamID": JSON.stringify(teamID)},
+        //     xhrFields: {
+        //         withCredentials: true
+        //         },
+        //     crossDomain: true,
+        //     contentType: 'application/json; charset=utf-8',
+        //     success: function(response) {
+        //         let netsStats = response['nets_stats']
+        //         let netsRoster = response['nets_roster']
+        //         let oppsStats = response['opp_stats']
+        //         let oppRoster = response['opp_roster']
+        //         let teamColors = response['team_colors']
 
-                $("#loader").removeClass("loader");
+        //         $("#loader").removeClass("loader");
 
-                $("#team2-img").attr({
-                    "style": "visibility: visible",
-                    "src": `./../static/logos/${teamAbbr}_logo.svg`
-                });
+        //         $("#team2-img").attr({
+        //             "style": "visibility: visible",
+        //             "src": `./../static/logos/${teamAbbr}_logo.svg`
+        //         });
 
-                localStorage.setItem("nets_stats", JSON.stringify(netsStats));
-                localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
-                localStorage.setItem("nets_roster", JSON.stringify(netsRoster));
-                localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
-                localStorage.setItem("team_colors", JSON.stringify(teamColors))
+        //         localStorage.setItem("nets_stats", JSON.stringify(netsStats));
+        //         localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
+        //         localStorage.setItem("nets_roster", JSON.stringify(netsRoster));
+        //         localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
+        //         localStorage.setItem("team_colors", JSON.stringify(teamColors))
                 
-                $(".collapse-stats").collapse()
-                $("#set-roster-r").removeAttr("disabled")
-                                  .css({"color": "white"});
-                $("#set-roster-l").removeAttr("disabled")
-                                  .css({"color": "white"});
+        //         $(".collapse-stats").collapse()
+        //         $("#set-roster-r").removeAttr("disabled")
+        //                           .css({"color": "white"});
+        //         $("#set-roster-l").removeAttr("disabled")
+        //                           .css({"color": "white"});
 
-                tableMaker("left", netsStats)
-                tableMaker("right", oppsStats)
+        //         tableMaker("left", netsStats)
+        //         tableMaker("right", oppsStats)
 
 
-                lineupVsTeamStatsAjax(teamID);
-            },
-            error: function(error) {
-                console.log(error);
-                console.log("Here I am.")
-            }
-        });
+        //         lineupVsTeamStatsAjax(teamID);
+        //     },
+        //     error: function(error) {
+        //         console.log(error);
+        //         console.log("Here I am.")
+        //     }
+        // });
         
     });
 
