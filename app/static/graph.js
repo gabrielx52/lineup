@@ -17,6 +17,9 @@ $(document).ready(function(){
     });
 });
 
+const baseUrl = "https://serene-earth-30229.herokuapp.com"
+
+
 let average = (array) => array.reduce((a, b) => a + b) / array.length;
 
 let fgLineupIDs
