@@ -51,7 +51,7 @@ function lineupVsTeamStatsAjax(teamID) {
 // Get team vs team lineup data, called after team stats load.
     $.ajax({
         type: "POST",
-        url: `${baseUrl}/getLineupVsTeamData`,
+        url: `/getLineupVsTeamData`,
         dataType: 'jsonp',
         data: {"teamID": JSON.stringify(teamID)},
         success: function(response) {
