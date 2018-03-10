@@ -54,6 +54,7 @@ function lineupVsTeamStatsAjax(teamID) {
         url: `${baseUrl}/getLineupVsTeamData`,
         dataType: 'json',
         data: {"teamID": JSON.stringify(teamID)},
+        headers: {  'Access-Control-Allow-Origin': 'https://serene-earth-30229.herokuapp.com' },
         success: function(response) {
             let lineups = response["lineups"]
             console.log(lineups)
