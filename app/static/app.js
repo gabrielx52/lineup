@@ -3,6 +3,7 @@
 const baseUrl = "https://serene-earth-30229.herokuapp.com"
 
 $(document).ready(function() {
+    console.log($SCRIPT_ROOT)
     $(".dropdown-toggle").dropdown();
     $(".dropdown-toggle").click(function() {
         $("#right-lineup-collapse").collapse("hide");
@@ -21,7 +22,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: `https://serene-earth-30229.herokuapp.com/getTeamVsTeamData`,
+            url: $SCRIPT_ROOT + `/getTeamVsTeamData`,
             dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
             xhrFields: {
