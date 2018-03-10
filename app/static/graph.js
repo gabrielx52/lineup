@@ -54,7 +54,6 @@ function lineupVsTeamStatsAjax(teamID) {
         url: `${baseUrl}/getLineupVsTeamData`,
         dataType: 'jsonp',
         data: {"teamID": JSON.stringify(teamID)},
-        headers: {  'Access-Control-Allow-Origin': '*' },
         success: function(response) {
             let lineups = response["lineups"]
             console.log(lineups)

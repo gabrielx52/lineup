@@ -22,7 +22,6 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: `${baseUrl}/getTeamVsTeamData`,
-            headers: {  'Access-Control-Allow-Origin': '*' },
             dataType: 'jsonp',
             data: {"teamID": JSON.stringify(teamID)},
             success: function(response) {
