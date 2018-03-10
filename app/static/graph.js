@@ -52,9 +52,9 @@ function lineupVsTeamStatsAjax(teamID) {
     $.ajax({
         type: "POST",
         url: `${baseUrl}/getLineupVsTeamData`,
-        dataType: 'json',
+        dataType: 'jsonp',
         data: {"teamID": JSON.stringify(teamID)},
-        headers: {  'Access-Control-Allow-Origin': 'https://serene-earth-30229.herokuapp.com' },
+        // headers: {  'Access-Control-Allow-Origin': 'https://serene-earth-30229.herokuapp.com' },
         success: function(response) {
             let lineups = response["lineups"]
             console.log(lineups)
