@@ -1,1 +1,1 @@
-web: gunicorn -b 0.0.0.0:5000 lineup:app
+web: gunicorn flask run
