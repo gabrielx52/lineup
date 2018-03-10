@@ -13,6 +13,8 @@ from .api_script import (get_team_lineup_vs_specific_team_stats,
 
 from .team_dict import TEAMS, teamColors
 
+from .script import get_team_roster as gtr
+
 
 @app.route('/')
 @app.route('/index')
@@ -27,8 +29,8 @@ def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
     nets_id = "1610612751"
     # team_id = request.form['teamID']
-
-    nets_roster = get_team_roster(nets_id)
+    nets_roster = gtr('BKN')
+    # nets_roster = get_team_roster(nets_id)
     return json.dumps({'status': 'OK', 'nets_id': nets_id, 'nets_roster': nets_roster})
     opp_roster = get_team_roster(team_id)
     nets_stats = get_team_vs_team_stats(nets_id, team_id)
