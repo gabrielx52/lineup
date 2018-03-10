@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: `${baseUrl}/getTeamVsTeamData`,
+            url: `https://serene-earth-30229.herokuapp.com/getTeamVsTeamData`,
             dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
             success: function(response) {
