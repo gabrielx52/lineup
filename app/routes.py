@@ -25,8 +25,6 @@ def index():
 @cross_origin(supports_credentials=True)
 def get_team_vs_team_data():
     """Route for jquery team vs team data request."""
-    return json.dumps({'status': 'OK'})
-
     nets_id = "1610612751"
     team_id = request.form['teamID']
     opp_roster = get_team_roster(team_id)
