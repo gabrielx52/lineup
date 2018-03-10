@@ -28,7 +28,7 @@ def get_team_vs_team_data():
     nets_id = "1610612751"
     # team_id = request.form['teamID']
 
-    return json.dumps({'status': 'OK'})
+    return json.dumps({'status': 'OK', 'nets_id': nets_id})
     opp_roster = get_team_roster(team_id)
     nets_roster = get_team_roster(nets_id)
     nets_stats = get_team_vs_team_stats(nets_id, team_id)
