@@ -40,3 +40,9 @@ def get_lineup_vs_team_data():
     team_id = request.form['teamID']
     lineups = get_team_lineup_vs_specific_team_stats(nets_id, team_id)
     return json.dumps({'status': 'OK', 'nets_id': nets_id, "opp_id": team_id, "lineups": lineups})
+
+
+@app.route('/test', methods=['POST', 'GET'])
+def get_help():
+    """Route for jquery lineup vs team data request."""
+    return "hello"
