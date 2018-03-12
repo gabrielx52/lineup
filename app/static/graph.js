@@ -15,6 +15,16 @@ $(document).ready(function(){
         $("#left-graph-toggle").removeAttr("disabled")
 
     });
+    $("#left-fg-graph").click(function() {
+        makeTheGraph("left", "fg", graphFields, leftChart)
+    })
+    $("#left-fg3-graph").click(function() {
+        makeTheGraph("left", "fg3", graphFields, leftChart)
+    })
+
+    $("#left-ft-graph").click(function() {
+        makeTheGraph("left", "ft", graphFields, leftChart)
+    })
 });
 
 let average = (array) => array.reduce((a, b) => a + b) / array.length;
@@ -50,33 +60,6 @@ let graphFields = {
 
 }
 
-let fgLineupIDs
-let ftLineupIDs
-let fg3LineupIDs
-
-let fgAttemptBorderColors
-let fgAttemptFillColors
-let fgAttempts
-let fgMadeBorderColors
-let fgMadeFillColors
-let fgMade
-let fgPercent
-
-let ftAttemptBorderColors
-let ftAttemptFillColors
-let ftAttempts
-let ftMadeBorderColors
-let ftMadeFillColors
-let ftMade
-let ftPercent
-
-let fg3AttemptBorderColors
-let fg3AttemptFillColors
-let fg3Attempts
-let fg3MadeBorderColors
-let fg3MadeFillColors
-let fg3Made
-let fg3Percent
 
 function lineupVsTeamStatsAjax(teamID) {
 // Get team vs team lineup data, called after team stats load.
@@ -311,98 +294,6 @@ function createDatasets(lineups, lineupKey) {
             }
         } 
     }
-    // fgLineupIDs = []
-    // ftLineupIDs = []
-    // fg3LineupIDs = []
-
-    // fgAttemptBorderColors = []
-    // fgAttemptFillColors = []
-    // fgAttempts = []
-    // fgMadeBorderColors = []
-    // fgMadeFillColors = []
-    // fgMade = []
-    // fgPercent = []
-
-    // ftAttemptBorderColors = []
-    // ftAttemptFillColors = []
-    // ftAttempts = []
-    // ftMadeBorderColors = []
-    // ftMadeFillColors = []
-    // ftMade = []
-    // ftPercent = []
-
-    // fg3AttemptBorderColors = []
-    // fg3AttemptFillColors = []
-    // fg3Attempts = []
-    // fg3MadeBorderColors = []
-    // fg3MadeFillColors = []
-    // fg3Made = []
-    // fg3Percent = []
-    // for(var lineup in lineups){
-    //     if(lineup == lineupKey) {
-    //         if(lineups[lineup]["FGA"] != 0){
-    //         fgLineupIDs.push(lineups[lineup]["GROUP_ID"])
-    //         fgAttemptFillColors.push("rgba(255, 159, 64, 1)")
-    //         fgAttemptBorderColors.push("rgba(255, 159, 64, 1)")
-    //         fgMadeFillColors.push("rgba(255, 99, 132, 1)")
-    //         fgMadeBorderColors.push("rgba(255, 99, 132, 1)")
-    //         fgAttempts.push(lineups[lineup]["FGA"])
-    //         fgMade.push(lineups[lineup]["FGM"])
-    //         fgPercent.push(lineups[lineup]["FG_PCT"])
-    //         } 
-    //         if(lineups[lineup]["FTA"] != 0){
-    //         ftLineupIDs.push(lineups[lineup]["GROUP_ID"])
-    //         ftAttemptFillColors.push("rgba(255, 159, 64, 1)")
-    //         ftAttemptBorderColors.push("rgba(255, 159, 64, 1)")
-    //         ftMadeFillColors.push("rgba(255, 99, 132, 1)")
-    //         ftMadeBorderColors.push("rgba(255, 99, 132, 1)")
-    //         ftAttempts.push(lineups[lineup]["FTA"])
-    //         ftMade.push(lineups[lineup]["FTM"])
-    //         ftPercent.push(lineups[lineup]["FT_PCT"])
-    //         }  
-    //         if(lineups[lineup]["FT3A"] != 0){  
-    //         fg3LineupIDs.push(lineups[lineup]["GROUP_ID"]) 
-    //         fg3AttemptFillColors.push("rgba(255, 159, 64, 1)")
-    //         fg3AttemptBorderColors.push("rgba(255, 159, 64, 1)")
-    //         fg3MadeFillColors.push("rgba(255, 99, 132, 1)")
-    //         fg3MadeBorderColors.push("rgba(255, 99, 132, 1)")
-    //         fg3Attempts.push(lineups[lineup]["FG3A"])
-    //         fg3Made.push(lineups[lineup]["FG3M"])
-    //         fg3Percent.push(lineups[lineup]["FG3_PCT"])
-    //         }
-    //     } else {
-    //         if(lineups[lineup]["FGA"] != 0){
-    //         fgLineupIDs.push(lineups[lineup]["GROUP_ID"])
-    //         fgAttemptFillColors.push("rgba(192, 192, 192, 1)")
-    //         fgAttemptBorderColors.push("rgba(192, 192, 192, 1)")
-    //         fgMadeFillColors.push("rgba(0, 0, 0, 1)")
-    //         fgMadeBorderColors.push("rgba(0, 0, 0, 1)")
-    //         fgAttempts.push(lineups[lineup]["FGA"])
-    //         fgMade.push(lineups[lineup]["FGM"])
-    //         fgPercent.push(lineups[lineup]["FG_PCT"])
-    //         }
-    //         if(lineups[lineup]["FTA"] != 0){
-    //         ftLineupIDs.push(lineups[lineup]["GROUP_ID"])
-    //         ftAttemptFillColors.push("rgba(192, 192, 192, 1)")
-    //         ftAttemptBorderColors.push("rgba(192, 192, 192, 1)")
-    //         ftMadeFillColors.push("rgba(0, 0, 0, 1)")
-    //         ftMadeBorderColors.push("rgba(0, 0, 0, 1)")
-    //         ftAttempts.push(lineups[lineup]["FTA"])
-    //         ftMade.push(lineups[lineup]["FTM"])
-    //         ftPercent.push(lineups[lineup]["FT_PCT"])
-    //         }
-    //         if(lineups[lineup]["FG3A"] != 0){
-    //         fg3LineupIDs.push(lineups[lineup]["GROUP_ID"])
-    //         fg3AttemptFillColors.push("rgba(192, 192, 192, 1)")
-    //         fg3AttemptBorderColors.push("rgba(192, 192, 192, 1)")
-    //         fg3MadeFillColors.push("rgba(0, 0, 0, 1)")
-    //         fg3MadeBorderColors.push("rgba(0, 0, 0, 1)")
-    //         fg3Attempts.push(lineups[lineup]["FG3A"])
-    //         fg3Made.push(lineups[lineup]["FG3M"])
-    //         fg3Percent.push(lineups[lineup]["FG3_PCT"])
-    //         }
-    //     } 
-    // }
 }
 
 
@@ -472,72 +363,6 @@ function makeTheFG3Graph() {
 }
 
 
-
-// function makeTheFTGraph() {
-//     removeData(leftChart)
-//     $("#left-ft-graph").attr("disabled", "disabled");        
-//     $("#left-fg-graph").removeAttr("disabled")
-//     $("#left-fg3-graph").removeAttr("disabled")
-
-//     leftChart.data.labels = ftLineupIDs
-//     leftChart.data.datasets[0].label = "FT made"
-//     leftChart.data.datasets[0].data = ftMade
-//     leftChart.data.datasets[0].backgroundColor = ftMadeFillColors
-//     leftChart.data.datasets[0].borderColor = ftMadeBorderColors
-//     leftChart.data.datasets[1].label = "FT attempts"
-//     leftChart.data.datasets[1].data = ftAttempts
-//     leftChart.data.datasets[1].backgroundColor = ftAttemptFillColors
-//     leftChart.data.datasets[1].borderColor = ftAttemptBorderColors
-//     leftChart.options.annotation.annotations[0].value = average(ftAttempts)
-//     leftChart.options.annotation.annotations[1].value = average(ftMade)
-//     leftChart.update()
-
-// }
-
-// function makeTheFGGraph() {
-//     removeData(leftChart)
-//     $("#left-fg-graph").attr("disabled", "disabled");        
-//     $("#left-ft-graph").removeAttr("disabled")
-//     $("#left-fg3-graph").removeAttr("disabled")
-
-//     leftChart.data.labels = fgLineupIDs
-//     leftChart.data.datasets[0].label = "FG made"
-//     leftChart.data.datasets[0].data = fgMade
-//     leftChart.data.datasets[0].backgroundColor = fgMadeFillColors
-//     leftChart.data.datasets[0].borderColor = fgMadeBorderColors
-//     leftChart.data.datasets[1].label = "FG attempts"
-//     leftChart.data.datasets[1].data = fgAttempts
-//     leftChart.data.datasets[1].backgroundColor = fgAttemptFillColors
-//     leftChart.data.datasets[1].borderColor = fgAttemptBorderColors
-//     leftChart.options.annotation.annotations[0].value = average(fgAttempts)
-//     leftChart.options.annotation.annotations[1].value = average(fgMade)
-//     leftChart.update()
-
-// }
-
-
-// function makeTheFG3Graph() {
-//     removeData(leftChart)
-//     $("#left-fg3-graph").attr("disabled", "disabled");        
-//     $("#left-ft-graph").removeAttr("disabled")
-//     $("#left-fg-graph").removeAttr("disabled")
-    
-//     leftChart.data.labels = fg3LineupIDs
-//     leftChart.data.datasets[0].label = "FG3 made"
-//     leftChart.data.datasets[0].data = fg3Made
-//     leftChart.data.datasets[0].backgroundColor = fg3MadeFillColors
-//     leftChart.data.datasets[0].borderColor = fg3MadeBorderColors
-//     leftChart.data.datasets[1].label = "FG3 attempts"
-//     leftChart.data.datasets[1].data = fg3Attempts
-//     leftChart.data.datasets[1].backgroundColor = fg3AttemptFillColors
-//     leftChart.data.datasets[1].borderColor = fg3AttemptBorderColors
-//     leftChart.options.annotation.annotations[0].value = average(fg3Attempts)
-//     leftChart.options.annotation.annotations[1].value = average(fg3Made)
-//     leftChart.update()
-
-// }
-
-
 function removeData(chart) {
     chart.data.labels = [];
     chart.data.datasets.forEach((dataset) => {
@@ -547,7 +372,7 @@ function removeData(chart) {
 }
 
 
-function makeTheGraph(side, stat, chart) {
+function makeTheGraph(side, stat, statsObj, chart) {
     removeData(chart)
     $(`#${side}-ft-graph`).removeAttr("disabled")
     $(`#${side}-fg-graph`).removeAttr("disabled")
@@ -555,19 +380,17 @@ function makeTheGraph(side, stat, chart) {
     $(`#${side}-${stat}-graph`).attr("disabled", "disabled");        
 
 
-    chart.data.labels = eval(`${stat}LineupIDs`)
-
-    chart.data.labels = fg3LineupIDs
-    chart.data.datasets[0].label = "FG3 made"
-    chart.data.datasets[0].data = fg3Made
-    chart.data.datasets[0].backgroundColor = fg3MadeFillColors
-    chart.data.datasets[0].borderColor = fg3MadeBorderColors
-    chart.data.datasets[1].label = "FG3 attempts"
-    chart.data.datasets[1].data = fg3Attempts
-    chart.data.datasets[1].backgroundColor = fg3AttemptFillColors
-    chart.data.datasets[1].borderColor = fg3AttemptBorderColors
-    chart.options.annotation.annotations[0].value = average(fg3Attempts)
-    chart.options.annotation.annotations[1].value = average(fg3Made)
+    chart.data.labels = statsObj[ stat + "LineupIDs"]
+    chart.data.datasets[0].label =  stat.toUpperCase() + " made"
+    chart.data.datasets[0].data = statsObj[ stat + "Made"]
+    chart.data.datasets[0].backgroundColor = statsObj[ stat + "MadeFillColors"]
+    chart.data.datasets[0].borderColor = statsObj[ stat + "MadeBorderColors"]
+    chart.data.datasets[1].label =  stat.toUpperCase() + " attempts"
+    chart.data.datasets[1].data = statsObj[ stat + "Attempts"]
+    chart.data.datasets[1].backgroundColor = statsObj[ stat + "AttemptFillColors"]
+    chart.data.datasets[1].borderColor = statsObj[ stat + "AttemptBorderColors"]
+    chart.options.annotation.annotations[0].value = average(statsObj[ stat + "Attempts"])
+    chart.options.annotation.annotations[1].value = average(statsObj[ stat + "Made"])
     chart.update()
 
 }
