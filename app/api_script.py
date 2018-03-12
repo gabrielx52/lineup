@@ -4,7 +4,7 @@ import pickle
 
 from nba_py import player, team
 
-from .team_dict import TEAMS, tvt_keys
+from team_dict import TEAMS, tvt_keys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -57,6 +57,7 @@ def small_lineup_vs_team_stats(lineups_raw):
 def get_team_lineup_vs_specific_team_stats(team_id=1610612751, opponent_id=0):
     """Get all lineups and stats vs specific team."""
     team_vs_opp_raw = team.TeamLineups(team_id, opponent_team_id=opponent_id)
+    return team_vs_opp_raw
     opp_vs_team_raw = team.TeamLineups(opponent_id, opponent_team_id=team_id)
     team_vs_opp = small_lineup_vs_team_stats(lineup_group_id_parser(team_vs_opp_raw.lineups()))
     opp_vs_team = small_lineup_vs_team_stats(lineup_group_id_parser(opp_vs_team_raw.lineups()))

@@ -35,17 +35,16 @@
             <div class="row">
 
                 <!-- Left Team -->
-                <div class="col-lg-6 portfolio-item team-card">
+                <div class="col-lg-6 team-card">
                     <div class="card">
 
                         <div class="card-header">
                             <img data-team-id="1610612751" class="team-logo away team-img" type="image/svg+xml" src="./../static/logos/BKN_logo.svg" alt="Nets logo" title="Nets logo">
                             <button type="button" class="btn btn-dark" id="set-roster-l" disabled>Choose Lineup</button>
-
-                            <button type="button" id="left-stats-toggle" class="btn-sm btn-warning" disabled>Stats</button>
-                            <button onclick="makeTheFGGraph()" type="button" id="left-graph-toggle" class="btn-sm btn-warning" disabled>Graph</button>
-
-
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" id="left-stats-toggle" class="btn-sm btn-warning" disabled>Stats</button>
+                                <button type="button" id="left-graph-toggle" class="btn-sm btn-warning" disabled>Graph</button>
+                            </div>
                         </div>
 
                         <!-- Collapsable Lineup -->
@@ -73,12 +72,7 @@
                                     <button type="button" id="left-fg3-graph" class="btn-sm btn-warning" >3P</button>
                                     <button type="button" id="left-ft-graph" class="btn-sm btn-warning" >FT</button>
                                 </div>
-
-                            <canvas id="myChart-left" width="400" height="400"></canvas>
-
-
-
-
+                                <canvas id="myChart-left" width="400" height="400"></canvas>
                             </div>
                         </div>
 
@@ -187,6 +181,10 @@
                                 </div>
                                 <button type="button" class="btn btn-dark" id="set-roster-r" disabled>Choose Lineup</button>
                             </div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" id="right-stats-toggle" class="btn-sm btn-warning" disabled>Stats</button>
+                                <button type="button" id="right-graph-toggle" class="btn-sm btn-warning" disabled>Graph</button>
+                            </div>
                         </div>
 
                         <!-- Collapsable Lineup -->
@@ -200,6 +198,19 @@
                                     <button id="right-lineup-collapse-close" type="button" class="btn btn-outline-dark flatLeft">Cancel</button>
                                     <span>Select 5 players</span>
                                 </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Collapsable Graph Div -->
+                        <div class="collapse" id="right-collapse-graph">
+                            <div class="card card-body">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" id="right-fg-graph" class="btn-sm btn-warning" >FG</button>
+                                    <button type="button" id="right-fg3-graph" class="btn-sm btn-warning" >3P</button>
+                                    <button type="button" id="right-ft-graph" class="btn-sm btn-warning" >FT</button>
+                                </div>
+                                <canvas id="myChart-right" width="400" height="400"></canvas>
                             </div>
                         </div>
 

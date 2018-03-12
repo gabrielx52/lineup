@@ -52,7 +52,7 @@ $(document).ready(function() {
         let str = `<div class="col-lg-12 col-sm-12 text-center">`
         $("#set-roster-l").removeAttr("disabled")
         
-        checkForCurrentLineupStats(teamLineup, teamID)
+        checkForCurrentLineupStats(teamLineup, teamID, "left")
 
    
 
@@ -135,6 +135,8 @@ $(document).ready(function() {
         let str = `<div class="col-lg-12 col-sm-12 text-center">`
         $("#set-roster-r").removeAttr("disabled")
         $("#btnGroupDrop1").removeClass("appleBottom")
+        checkForCurrentLineupStats(oppLineup, teamID, "right")
+
         
         for(var playerObj in players) {
             let playerName = players[playerObj]["NAME"]
@@ -149,6 +151,8 @@ $(document).ready(function() {
         };
         str = str + `</div>`
         $("#right-team-dash").html(str);
+        $("#right-graph-toggle").removeAttr("disabled")
+
 
         $("#right-lineup-collapse").collapse("hide");
     })
