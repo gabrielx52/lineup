@@ -4,7 +4,7 @@ import pickle
 
 from nba_py import player, team
 
-from team_dict import TEAMS, tvt_keys
+from .team_dict import TEAMS, tvt_keys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
