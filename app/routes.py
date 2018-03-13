@@ -51,7 +51,6 @@ def get_lineup_vs_team_data():
 @cross_origin()
 def get_player_stats():
     """Route for player stats request."""
-    print("Made it this far!")
     player_id = request.form["playerID"]
     player_stats = get_pickled_player_stats(player_id)
     return json.dumps({'status': 'OK', 'player_stats': player_stats})

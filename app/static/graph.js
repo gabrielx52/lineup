@@ -45,7 +45,8 @@ $("#left-team-dash").on("click", "a.solo-stats", (function(event) {
         $("#left-collapse-player-stats").collapse("show")
 
         makeThePlayerTable("left", data["career"][0])
-        // console.log(data["career"][0])
+        makeThePlayerGraph(data["career"][0], doughnutL)
+        
     })
 }))
 
@@ -57,7 +58,8 @@ $("#right-team-dash").on("click", "a.solo-stats", (function(event) {
         $("#right-collapse-player-stats").collapse("show")
 
         makeThePlayerTable("right", data["career"][0])
-        // console.log(data["career"][0])
+        makeThePlayerGraph(data["career"][0], doughnutR)
+        
     })
 
 }))
@@ -127,6 +129,14 @@ let graphFields = {
 
 }
 
+let playerFields = {
+    "leftFT": [],
+    "leftFG": [],
+    "leftFG3": [],
+    "rightFT": [],
+    "rightFG": [],
+    "rightFG3": [],
+}
 
 function lineupVsTeamStatsAjax(teamID) {
 // Get team vs team lineup data, called after team stats load.
@@ -167,59 +177,14 @@ function checkForCurrentLineupStats(teamLineup, teamID, side) {
 var scalingFactor = function(data) {
     return Math.round(data * 100);
 };
-var randomColorFactor = function() {
-    return Math.round(Math.random() * 255);
-};
 
-// var configl = {
-//     type: 'doughnut',
-//     data: {
-//         datasets: [{
-//             label: "FGs",
-//             data: [
-//                 scalingFactor(1 - 0.436),
-//                 scalingFactor(0.436),
-//             ],
-//                 backgroundColor: [
-//                 "#FFEBAB",
-//                 "#FFC300",
-//             ],
-//         }, {
-//             label: "FG3s",
-//             data: [
-//                 scalingFactor(1 - 0.362),
-//                 scalingFactor(0.362),
-//             ],
-//                 backgroundColor: [
-//                 "#FEB7A8",
-//                 "#FF5733",
-//             ],
-//         }, {
-//             label: "FTs",
-//             data: [
-//                 scalingFactor(1 - 0.741),
-//                 scalingFactor(0.741),
-//             ],
-//                 backgroundColor: [
-//                 "#C898A6",
-//                 "#C70039",
-//             ],
-//         }],
-//         labels: [
-//             "% Missed",
-//             "% Made",
-//         ]
-//     },
-//     options: {
-//         responsive: true
-//     }
-// };
+
 var ctxLP = document.getElementById("playerChart-left").getContext("2d");
 var doughnutL = new Chart(ctxLP, {
     type: 'doughnut',
     data: {
         datasets: [{
-            label: "FGs",
+            // label: "FGs",
             data: [
                 scalingFactor(1 - 0.436),
                 scalingFactor(0.436),
@@ -229,7 +194,7 @@ var doughnutL = new Chart(ctxLP, {
                 "#FFC300",
             ],
         }, {
-            label: "FG3s",
+            // label: "FG3s",
             data: [
                 scalingFactor(1 - 0.362),
                 scalingFactor(0.362),
@@ -239,7 +204,7 @@ var doughnutL = new Chart(ctxLP, {
                 "#FF5733",
             ],
         }, {
-            label: "FTs",
+            // label: "FTs",
             data: [
                 scalingFactor(1 - 0.741),
                 scalingFactor(0.741),
@@ -261,7 +226,7 @@ var doughnutL = new Chart(ctxLP, {
 
 
 var ctxRP = document.getElementById("playerChart-right").getContext("2d");
-var doughnutL = new Chart(ctxRP, {
+var doughnutR = new Chart(ctxRP, {
     type: 'doughnut',
     data: {
         datasets: [{
@@ -674,20 +639,15 @@ function makeThePlayerTable(side, stats) {
     $(`#${side}-player-pf`).text(`${stats["PF"]}`)
 }
 
-function makeThePlayerGraph(side, stat, chart) {
-    removeData(chart)
-  
-    chart.data.labels = graphFields[side][ stat + "LineupIDs"]
-    chart.data.datasets[0].label =  stat.toUpperCase() + " made"
-    chart.data.datasets[0].data = graphFields[side][ stat + "Made"]
-    chart.data.datasets[0].backgroundColor = graphFields[side][ stat + "MadeFillColors"]
-    chart.data.datasets[0].borderColor = graphFields[side][ stat + "MadeBorderColors"]
-    chart.data.datasets[1].label =  stat.toUpperCase() + " attempts"
-    chart.data.datasets[1].data = graphFields[side][ stat + "Attempts"]
-    chart.data.datasets[1].backgroundColor = graphFields[side][ stat + "AttemptFillColors"]
-    chart.data.datasets[1].borderColor = graphFields[side][ stat + "AttemptBorderColors"]
-    chart.options.annotation.annotations[0].value = average(graphFields[side][ stat + "Attempts"])
-    chart.options.annotation.annotations[1].value = average(graphFields[side][ stat + "Made"])
+function makeThePlayerGraph(stat, chart) {
+    let fgPCT = (stat["FGM"] / stat["FGA"] * 100).toFixed(1)
+    let ftPCT = (stat["FTM"] / stat["FTA"] * 100).toFixed(1)
+    let fg3PCT = (stat["FG3M"] / stat["FG3A"] * 100).toFixed(1)
+    chart.data.datasets[0].data = [(100 - fgPCT).toFixed(1), fgPCT]
+    chart.data.datasets[1].data = [(100 - fg3PCT).toFixed(1), fg3PCT]
+    chart.data.datasets[2].data = [(100 - ftPCT).toFixed(1), ftPCT]
+    
+
     chart.update()
 
 }
@@ -697,7 +657,6 @@ function makeThePlayerGraph(side, stat, chart) {
 function graphSelect(side, chart) { 
     $(`#${side}-collapse-graph`).collapse("toggle");
     $(`#${side}-collapse-stats`).collapse("toggle");
-
     $(`#${side}-graph-toggle`).attr("disabled", "disabled");        
     $(`#${side}-stats-toggle`).removeAttr("disabled")
     makeTheGraph(`${side}`, "fg", chart)
@@ -707,7 +666,6 @@ function graphSelect(side, chart) {
 function statsSelect(side){
     $(`#${side}-collapse-stats`).collapse("toggle");
     $(`#${side}-collapse-graph`).collapse("toggle");
-
     $(`#${side}-stats-toggle`).attr("disabled", "disabled");        
     $(`#${side}-graph-toggle`).removeAttr("disabled")
 }
