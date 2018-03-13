@@ -21,6 +21,12 @@ def get_player_regular_season_career_totals(player_id):
     return player_stats.regular_season_career_totals()
 
 
+def get_player_single_season_totals(player_id):
+    """Return player current season totals."""
+    player_stats = player.PlayerProfile(player_id)
+    return player_stats.regular_season_totals()
+
+
 def get_player_post_season_career_totals(player_id):
     """Return player post season career totals."""
     player_stats = player.PlayerProfile(player_id)
@@ -164,3 +170,39 @@ def get_pickled_lineup_stats(team_id):
     with open(os.path.join(BASE_DIR, 'app/pickles/lineup_stats.pkl'), "rb") as fileObj:
         lineup_stats = pickle.load(fileObj)
         return lineup_stats[team_id]
+
+
+def pickle_player_stats(player_id, career_stats, single_stats):
+    """Pickle player stats."""
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/player_stats.pkl", "rb") as fileObj:
+        player_stats = pickle.load(fileObj)
+        if player_id not in player_stats:
+            player_stats[player_id] = {"current": single_stats, "career": career_stats}
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/player_stats.pkl", "wb") as fileObj:
+        pickle.dump(player_stats, fileObj)
+    with open("/Users/gabrielmeringolo/Python/lineup/app/pickles/player_stats.pkl", "rb") as fileObj:
+        stats = pickle.load(fileObj)
+        print(len(stats))
+
+
+def get_pickled_player_stats(player_id):
+    """Get lineup vs team stats from the pickle."""
+    with open(os.path.join(BASE_DIR, 'app/pickles/player_stats.pkl'), "rb") as fileObj:
+        player_stats = pickle.load(fileObj)
+        return player_stats[int(player_id)]
+
+
+def all_the_player_stats():
+    """Get all the players stats."""
+    all_players = get_player_list()
+    for playrr in all_players:
+        try:
+            career_stats = get_player_regular_season_career_totals(playrr["PERSON_ID"])
+            single_stats = get_player_single_season_totals(playrr["PERSON_ID"])
+            for stat in single_stats:
+                if stat['SEASON_ID'] == '2017-18':
+                    print(stat)
+            pickle_player_stats(playrr["PERSON_ID"], career_stats, single_stats)
+            print("Got {}'s stats".format(playrr["DISPLAY_FIRST_LAST"]))
+        except:
+            print("ERR: {} *****".format(playrr["DISPLAY_FIRST_LAST"]))

@@ -1,5 +1,6 @@
 "use strict";
 
+const slimBallers = '<div class="col-lg-12 col-sm-12 vert-baller"><div></div><div></div><div></div><div></div><div></div></div>'
 const baseUrl = "https://serene-earth-30229.herokuapp.com"
 
 $(document).ready(function() {
@@ -13,6 +14,22 @@ $(document).ready(function() {
         let teamName = $(this).text()
         let teamID = $(this).data("team-id")
 
+        
+        $("#left-team-dash").html(slimBallers)
+        $("#left-collapse-graph").collapse("hide");
+        $("#left-collapse-stats").collapse("show");
+        $("#left-stats-toggle").attr("disabled", "disabled");        
+        $("#left-graph-toggle").attr("disabled", "disabled");
+
+
+        $("#right-team-dash").html(slimBallers)
+        $("#right-collapse-graph").collapse("hide");
+        $("#right-collapse-stats").collapse("show");
+        $("#right-stats-toggle").attr("disabled", "disabled");        
+        $("#right-graph-toggle").attr("disabled", "disabled");
+
+
+
         $("#team2-img").attr({"style": "visibility: hidden"});
         $("#loader").addClass("loader");
         $("#btnGroupDrop1").removeClass("appleBottom");
@@ -25,14 +42,8 @@ $(document).ready(function() {
             url: `/getTeamVsTeamData`,
             dataType: 'json',
             data: {"teamID": JSON.stringify(teamID)},
-            // xhrFields: {
-            //     withCredentials: true
-            //     },
-            // crossDomain: true,
-            // contentType: 'application/json; charset=utf-8',
             success: function(response) {
 
-                console.log(response)
                 let netsStats = response['nets_stats']
                 let netsRoster = response['nets_roster']
                 let oppsStats = response['opp_stats']
@@ -50,7 +61,7 @@ $(document).ready(function() {
                 localStorage.setItem("opp_stats", JSON.stringify(oppsStats));
                 localStorage.setItem("nets_roster", JSON.stringify(netsRoster));
                 localStorage.setItem("opp_roster", JSON.stringify(oppRoster));
-                localStorage.setItem("team_colors", JSON.stringify(teamColors))
+                localStorage.setItem("team_colors", JSON.stringify(teamColors));
                 
                 $(".collapse-stats").collapse()
                 $("#set-roster-r").removeAttr("disabled")
@@ -61,12 +72,10 @@ $(document).ready(function() {
                 tableMaker("left", netsStats)
                 tableMaker("right", oppsStats)
 
-
                 lineupVsTeamStatsAjax(teamID);
             },
             error: function(error) {
                 console.log(error);
-                console.log("Here I am.")
             }
         });
         

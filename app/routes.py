@@ -8,6 +8,7 @@ from flask import render_template, request
 from flask_cors import cross_origin
 
 from .api_script import (get_pickled_lineup_stats,
+                         get_pickled_player_stats,
                          get_pickled_rosters,
                          get_pickled_tvt_stats,
                          )
@@ -46,7 +47,11 @@ def get_lineup_vs_team_data():
     return json.dumps({'status': 'OK', 'nets_id': nets_id, "opp_id": team_id, "lineups": lineups})
 
 
-@app.route('/test', methods=['POST', 'GET'])
-def get_help():
-    """Route for jquery lineup vs team data request."""
-    return "hello"
+@app.route('/playerStats', methods=['POST', 'GET'])
+@cross_origin()
+def get_player_stats():
+    """Route for player stats request."""
+    print("Made it this far!")
+    player_id = request.form["playerID"]
+    player_stats = get_pickled_player_stats(player_id)
+    return json.dumps({'status': 'OK', 'player_stats': player_stats})

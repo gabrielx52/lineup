@@ -147,16 +147,80 @@
                         <div class="card-body" id="new-thing">
                             <!-- Team Row -->
                             <div class="row" id="left-team-dash">
-                                <div class="col-lg-2" id="player_spacer"></div>
-                                <div class="col-lg-8 col-sm-8 text-center mb-4">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                                <div class="col-lg-12 col-sm-12 vert-baller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Collapsable Player Graph Div -->
+                        <div class="collapse" id="left-collapse-player-stats">
+                            <div class="card card-body">
+                                <div width="300" height="300">
+                                    <canvas id="playerChart-left"></canvas>
+                                    <div class="player-table">
+                                    <table id="left-player-table" class="table">
+                                        <tr class="table-header">
+                                            <th>GP</th>
+                                            <th>MIN</th>
+                                            <th>PTS</th>
+                                            <th>FGM</th>
+                                            <th>FGA</th>
+                                            <th>FG%</th>
+                                            <th>3PM</th>
+                                            <th>3PA</th>
+                                            <th>3P%</th>
+                                            <th>FTM</th>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td id="left-player-gp"></td>
+                                            <td id="left-player-min"></td>
+                                            <td id="left-player-pts"></td>
+                                            <td id="left-player-fgm"></td>
+                                            <td id="left-player-fga"></td>
+                                            <td id="left-player-fgpct"></td>
+                                            <td id="left-player-3pm"></td>
+                                            <td id="left-player-3pa"></td>
+                                            <td id="left-player-3ppct"></td>
+                                            <td id="left-player-ftpm"></td>
+                                        </tr>
+                                        <tr class="table-header">
+                                            <th>FTA</th>
+                                            <th>FT%</th>
+                                            <th>OREB</th>
+                                            <th>DREB</th>
+                                            <th>REB</th>
+                                            <th>AST</th>
+                                            <th>TOV</th>
+                                            <th>STL</th>
+                                            <th>BLK</th>
+                                            <th>PF</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="left-player-ftpa"></td>
+                                            <td id="left-player-ftpct"></td>
+                                            <td id="left-player-oreb"></td>
+                                            <td id="left-player-dreb"></td>
+                                            <td id="left-player-reb"></td>
+                                            <td id="left-player-ast"></td>
+                                            <td id="left-player-tov"></td>
+                                            <td id="left-player-stl"></td>
+                                            <td id="left-player-blk"></td>
+                                            <td id="left-player-pf"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div>
 
@@ -216,7 +280,7 @@
 
 
                         <!-- Collapsable Stats Table -->
-                        <div class="collapse collapse-stats" id="collapseExample">
+                        <div class="collapse collapse-stats" id="right-collapse-stats">
                             <div id="stats-tab" class="card card-body">
                                 <div class="container">
                                     <span id="right-stats-table-header">2017-18 stats vs. Brooklyn Nets</span>
@@ -285,14 +349,78 @@
                         <div class="card-body" id="new-thing">
                           <!-- Team Row -->
 
-                          <div class="row" id="right-team-dash">
-                            <div class="col-lg-2" id="player_spacer"></div>
-                                <div class="col-lg-8 col-sm-8 text-center mb-4">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
-                                    <img class="img-fluid d-block mx-auto small-ball" src="./../static/headshots/0/slim-baller.png" alt="">
+                            <div class="row" id="right-team-dash">
+                                <div class="col-lg-12 col-sm-12 vert-baller">
+                                    <div></div>    
+                                    <div></div>    
+                                    <div></div>    
+                                    <div></div>    
+                                    <div></div>    
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Collapsable Player Graph Div -->
+                        <div class="collapse" id="right-collapse-player-stats">
+                            <div class="card card-body">
+                                <div width="300" height="300">
+                                    <canvas id="playerChart-right"></canvas> 
+                                    <div class="player-table">
+                                        
+                                    
+                                    <table id="right-player-table" class="table">
+                                        <tr class="table-header">
+                                            <th>GP</th>
+                                            <th>MIN</th>
+                                            <th>PTS</th>
+                                            <th>FGM</th>
+                                            <th>FGA</th>
+                                            <th>FG%</th>
+                                            <th>3PM</th>
+                                            <th>3PA</th>
+                                            <th>3P%</th>
+                                            <th>FTM</th>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td id="right-player-gp"></td>
+                                            <td id="right-player-min"></td>
+                                            <td id="right-player-pts"></td>
+                                            <td id="right-player-fgm"></td>
+                                            <td id="right-player-fga"></td>
+                                            <td id="right-player-fgpct"></td>
+                                            <td id="right-player-3pm"></td>
+                                            <td id="right-player-3pa"></td>
+                                            <td id="right-player-3ppct"></td>
+                                            <td id="right-player-ftpm"></td>
+                                        </tr>
+                                        <tr class="table-header">
+                                            <th>FTA</th>
+                                            <th>FT%</th>
+                                            <th>OREB</th>
+                                            <th>DREB</th>
+                                            <th>REB</th>
+                                            <th>AST</th>
+                                            <th>TOV</th>
+                                            <th>STL</th>
+                                            <th>BLK</th>
+                                            <th>PF</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="right-player-ftpa"></td>
+                                            <td id="right-player-ftpct"></td>
+                                            <td id="right-player-oreb"></td>
+                                            <td id="right-player-dreb"></td>
+                                            <td id="right-player-reb"></td>
+                                            <td id="right-player-ast"></td>
+                                            <td id="right-player-tov"></td>
+                                            <td id="right-player-stl"></td>
+                                            <td id="right-player-blk"></td>
+                                            <td id="right-player-pf"></td>
+                                        </tr>
+                                    </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

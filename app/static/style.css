@@ -295,3 +295,32 @@ button {
 #left-stats-toggle, #left-graph-toggle, #right-stats-toggle, #right-graph-toggle {
     width: 100%;
 }
+
+.vert-baller {
+    text-align: center;
+}
+.vert-baller div {
+    overflow: hidden;
+    height: 12rem;
+    width: 17%;
+    display: inline-block !important;
+    margin: 1rem 2px;
+    background-image: url('./headshots/0/resized-baller.png');
+    background-position: center;
+    background-position-x: 50%;
+    background-size: 16rem;
+}
+
+
+.selected-player {
+    box-shadow: 0 0 7px 7px gold;
+}
+
+
+.selected-playerR {
+    box-shadow: 0 0 7px 7px #00b8ff;
+}
+
+.player-table {
+    overflow-x: scroll;
+}

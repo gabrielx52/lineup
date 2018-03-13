@@ -18,7 +18,6 @@ $(document).ready(function() {
             var playerName = netsRoster[playerObj]["PLAYER"]
             var playerID = netsRoster[playerObj]["PLAYER_ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
-            // console.log(playerName)
             str = str + '<div class="col-lg-4 col-md-6 mb-4">' +
                             '<div class="card yearbook-card">' +
                                 `<a href="#"><img class="card-img-top" src="./../static/headshots/${teamID}/${playerID}.png" alt=""></a>` +
@@ -60,12 +59,12 @@ $(document).ready(function() {
             let playerName = players[playerObj]["NAME"]
             let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
-            str = str + `<div class="vert-card">` +
+            str = str + `<a href="#" class="solo-stats" data-player-id="${playerID}" data-team-id="${teamID}"><div class="vert-card">` +
                             `<div style="background-image: url('./static/headshots/${teamID}/${playerID}.png')" data-player-id="${playerID}" data-team-id="${teamID}" class="vert-head"></div>` +
                             `<div style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="vert-name">` +
                                 `${playerName}&thinsp;` +
                             `</div>` +
-                        `</div>`
+                        `</div></a>`
         };
         str = str + `</div>`
         $("#left-team-dash").html(str);
@@ -142,12 +141,12 @@ $(document).ready(function() {
             let playerName = players[playerObj]["NAME"]
             let playerID = players[playerObj]["ID"]
             playerName = `${playerName.split(" ")[0][0]}. ${playerName.split(" ").slice(1).join(" ")} `
-            str = str + `<div class="vert-card">` +
+            str = str + `<a href="#" class="solo-stats" data-player-id="${playerID}" data-team-id="${teamID}"><div class="vert-card">` +
                             `<div style="background-image: url('./static/headshots/${teamID}/${playerID}.png')" data-player-id="${playerID}" data-team-id="${teamID}" class="vert-head"></div>` +
                             `<div style="background-color: #${teamColors[0]}; border-color: #${teamColors[1]};" class="vert-name">` +
                                 `${playerName}&thinsp;` +
                             `</div>` +
-                        `</div>`
+                        `</div></a>`
         };
         str = str + `</div>`
         $("#right-team-dash").html(str);
